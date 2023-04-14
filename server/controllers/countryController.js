@@ -12,7 +12,7 @@ class CountryController {
             if (countryCheck.length !== 0) {
                 next(ApiError.badRequest({function: 'CountryController.create', message: 'Страна уже существует'}));
             }
-            
+
             const {icon } = req.files;
 
             let fileName = uuid.v4() + '.svg';
@@ -41,6 +41,17 @@ class CountryController {
             return res.json(country);
         } catch (error) {
             next(ApiError.internalError({function: 'CountryController.getCountryByCode', message: error.message}))
+        }
+    }
+
+    async getCountryByName(req, res, next) {
+        try {
+            let {name} = req.params;
+            name = name.replace('%20', ' ');
+            const country = await Country.findOne({where: {name}});
+            return res.json(country);
+        } catch (error) {
+            next(ApiError.internalError({function: 'CountryController.getCountryByName', message: error.message}))
         }
     }
 }
