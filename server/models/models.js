@@ -17,8 +17,9 @@ const Country = sequelize.define(
     'country',
     {
         id: {type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false, defaultValue: Sequelize.literal('uuid_in((md5((random())::text))::cstring)')},
-        icon_path: {type: DataTypes.STRING, allowNull: true},
-        name: {type: DataTypes.STRING, allowNull: false, unique: true}
+        icon: {type: DataTypes.STRING, allowNull: true},
+        name: {type: DataTypes.STRING, allowNull: false, unique: true},
+        code: {type: DataTypes.STRING, allowNull: false, unique: true}
     }
 )
 
