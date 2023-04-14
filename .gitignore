@@ -1,0 +1,11 @@
+*/node_modules/*
+node_modules*
+*/package-lock.json
+
+*/.env
+*/logs/*.log*
+
+/server/backup/*
+/server/config/config.json
+
+*.bkp
