@@ -1,0 +1,10 @@
+[2023-04-15T12:57:30.262] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "success",
+  "message": "Country Italy exists in DB, id=58d35248-0e30-b22d-756a-4b266046f7e8"
+}
+[2023-04-15T12:57:30.763] [INFO] server - {
+  "function": "utils/createCountry",
+  "status": "success",
+  "message": "Country Albania successfully created"
+}
