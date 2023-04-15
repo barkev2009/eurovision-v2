@@ -27,6 +27,34 @@ class CountryController {
         }
     }
 
+    async edit(req, res, next) {
+        try {
+            const { code } = req.params;
+            const { name } = req.body;
+            const country = await Country.findOne({where: {code}});
+            if (!country) {
+                return next(ApiError.badRequest({function: 'CountryController.edit', message: 'Страны не существует'}));
+            }
+
+            const files = req.files;
+            if (files) {
+                let fileName = country.icon;
+                files.icon.mv(path.resolve(__dirname, '..', 'static', fileName));
+            }
+
+            const result = await Country.update(
+                {name},
+                {where: {code}}
+            );
+            
+            const newCountry = await Country.findOne({where: {code}});
+            log('info', {message: 'EDIT', result: {country: newCountry, result}});
+            return res.json({country: newCountry, result});
+        } catch (error) {
+            return next(ApiError.internalError({function: 'CountryController.edit', message: error.message}))
+        }
+    }
+
     async getAllCountries(req, res, next) {
         try {
             const countries = await Country.findAll();

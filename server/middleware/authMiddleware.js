@@ -7,7 +7,7 @@ module.exports = function (req, resp, next) {
     try {
         const token = req.headers.authorization.split(' ')[1] // Bearer TOKEN
         if (!token) {
-            resp.status(401).json(
+            return resp.status(401).json(
                 {
                     message: 'Не авторизован'
                 }
@@ -17,7 +17,7 @@ module.exports = function (req, resp, next) {
         req.user = decoded
         next()
     } catch (error) {
-        resp.status(403).json(
+        return resp.status(403).json(
             {
                 message: 'Неверный токен'
             }

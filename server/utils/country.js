@@ -1247,9 +1247,11 @@ const createCountry = async (countryName) => {
     // Pass image stream from response directly to form
     form.append('image', response.data, { filename: fileName, contentType: 'image/svg+xml' });
 
+    const loginResp = await axios.post('http://localhost:5002/api/user/login', {login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD});
     const resp = await axios.post('http://localhost:5002/api/country', { code: countryCode, name: countryName, icon: form }, {
       headers: {
-        ...form.getHeaders()
+        ...form.getHeaders(),
+        'Authorization': `Bearer ${loginResp.data.token}`
       },
     });
 

@@ -4,21 +4,26 @@ const { User } = require('../models/models');
 const jwt = require('jsonwebtoken');
 const { log } = require('../logs/logger');
 
-const generateJWT = (id, name, login) => {
+const generateJWT = (id, name, login, role) => {
+    let expiresIn = '24h';
+    if (role === 'ADMIN') {
+        expiresIn = '1h';
+    }
     return jwt.sign(
         {
             id,
             name,
-            login
+            login,
+            role
         },
         process.env.SECRET_KEY,
-        { expiresIn: '24h' }
+        { expiresIn }
     )
 }
 
 class UserController {
     async register(req, resp, next) {
-        const { name, login, password } = req.body;
+        const { name, login, password, role } = req.body;
 
         if (!name || !login) {
             return next(ApiError.badRequest('Некорректные имя и логин'));
@@ -36,8 +41,8 @@ class UserController {
         }
 
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({ name, login, password: hashPassword });
-        const token = generateJWT(user.id, user.name, user.login);
+        const user = await User.create({ name, login, password: hashPassword, role });
+        const token = generateJWT(user.id, user.name, user.login, user.role);
 
         log('info', {message: 'REGISTER', token});
         return resp.json({ token })
@@ -57,14 +62,14 @@ class UserController {
             return next(ApiError.internalError('Неверный пароль'))
         }
 
-        const token = generateJWT(candidate.id, candidate.name, candidate.login);
+        const token = generateJWT(candidate.id, candidate.name, candidate.login, candidate.role);
         log('info', {message: 'LOGIN', token});
         return resp.json({ token })
     }
 
     async checkAuth(req, resp, next) {
 
-        const token = generateJWT(req.user.id, req.user.name, req.user.login);
+        const token = generateJWT(req.user.id, req.user.name, req.user.login, req.user.role);
         log('info', {message: 'CHECK_AUTH', token});
         return resp.json({ token })
     }

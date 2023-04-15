@@ -9,7 +9,8 @@ const User = sequelize.define(
         id: {type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false, defaultValue: Sequelize.literal('uuid_in((md5((random())::text))::cstring)')},
         login: {type: DataTypes.STRING, unique: true, allowNull: false},
         password: {type: DataTypes.STRING, allowNull: true},
-        name: {type: DataTypes.STRING, allowNull: true}
+        name: {type: DataTypes.STRING, allowNull: true},
+        role: {type: DataTypes.STRING, allowNull: false, defaultValue: 'USER'}
     }
 )
 
