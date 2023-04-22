@@ -1,0 +1,59 @@
+.mainContainer {
+    margin-top: 6vw;
+}
+
+img {
+    width: 5vw;
+}
+
+p {
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .mainContainer {
+        margin-top: 0vw;
+        scroll-snap-type: y mandatory;
+        overflow: scroll;
+        height: 100vh;
+    }
+
+    img {
+        width: 20vw;
+    }
+
+    .entryContainer {
+        padding: 20vw 10vw 5vw 10vw;
+        height: 100vh;
+        scroll-snap-align: start;
+    }
+
+    .countryNameWrapper {
+        display: inline-block;
+        overflow-x: scroll;
+        width: 60vw;
+        padding-left: 10vw;
+    }
+
+    .countryName {
+        color: white;
+        font-size: 8vw;
+        text-align: start;
+        float: left;
+    }
+
+    .tableItemWrapper {
+        display: inline-block;
+        overflow-x: scroll;
+        width: 80vw;
+    }
+
+    .tableItem {
+        color: white;
+        /* padding: 0 10vw; */
+        font-size: 8vw;
+        float: left;
+        text-align: start;
+        white-space: nowrap;
+    }
+}

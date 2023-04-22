@@ -8,7 +8,7 @@ const useDocumentScrollThrottled = (callback) => {
 
     const handleDocumentScroll = () => {
         const { scrollTop: currentScrollTop } = document.documentElement || document.body;
-        console.log(`%c${currentScrollTop}`, {"color": "reduce", "font-size": "15px"})
+        // console.log(`%c${currentScrollTop}`, {"color": "red", "font-size": "15px"})
 
         setScrollPosition(
             prev => {

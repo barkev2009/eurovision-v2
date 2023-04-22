@@ -1,0 +1,62 @@
+.starBlock {
+    display: flex;
+    float: left;
+    width: 100%;
+    padding: 2vw 0vw;
+}
+
+.starContainer {
+    position: relative;
+    display: block;
+}
+
+.starBack {
+    width: 20vw;
+    stroke: gray;
+    position: absolute;
+}
+
+.starFront {
+    width: 20vw;
+    stroke: yellow;
+    position: absolute;
+    clip-path: inset(0 50% 0 0);
+}
+
+.starParams {
+    display: inline-block;
+    padding-top: 2vw;
+}
+
+.starName {
+    font-size: 5vw;
+    color: white;
+    padding-left: 25vw;
+    text-align: start;
+    position: relative;
+}
+
+/* .starName::after {
+    content: '';
+    width: 30vw;
+    height: 0.1vw;
+    background-color: white;
+    position: absolute;
+    top: 8vw;
+    left: 25vw;
+} */
+
+input {
+    font-size: 5vw;
+    color: white;
+    background-color: rgb(23, 23, 40);
+    border: none;
+    /* width: 15vw; */
+    display: block;
+    padding-left: 25vw;
+    padding-top: 1vw;
+}
+
+input:focus {
+    outline: none;
+}

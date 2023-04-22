@@ -7,6 +7,7 @@ header {
     transition: transform 0.3s ease;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 .shadow {
@@ -18,10 +19,78 @@ header {
     /* display: none; */
 }
 
-.main_logo {
-    width: 12%;
+.mainLogo {
+    width: 10vw;
     padding: 0px 10px;
-    top: -1vw;
+    top: 0vw;
     left: 0;
     position: absolute;
+}
+
+.headerBtnContainer {
+    float: right;
+    /* border: 0.1vw dotted violet; */
+    /* width: fit-content; */
+    top: 1.5vw;
+    right: 0;
+    position: absolute;
+}
+
+.filterLogo {
+    width: 3vw;
+    stroke: white;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    margin: 0px 3vw;
+}
+
+.filterLogo:hover, .adminLogo:hover {
+    transform: scale(1.1);
+}
+
+.adminLogo {
+    width: 2.2vw;
+    fill: white;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    top: -0.3vw;
+    position: relative;
+    margin: 0px 3vw;
+}
+
+@media (max-width: 600px) {
+    header {
+        height: 15vw;
+    }
+
+    .hidden {
+        transform: translateY(0%);
+    }
+
+    .mainLogo {
+        width: 30vw;
+        padding: 0px 10px;
+        top: -1vw;
+        left: 0;
+        position: absolute;
+    }
+    
+    .headerBtnContainer {
+        top: 2.5vw;
+    }
+    
+    .filterLogo {
+        width: 10vw;
+        margin: 0px 3vw;
+    }
+    
+    .filterLogo:hover, .adminLogo:hover {
+        transform: scale(1);
+    }
+    
+    .adminLogo {
+        width: 7vw;
+        top: -1.5vw;
+        margin: 0px 3vw;
+    }
 }

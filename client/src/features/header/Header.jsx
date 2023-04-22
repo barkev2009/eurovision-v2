@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css';
-import MainLogo from './MainLogo';
+import MainLogo from './logos/MainLogo';
 import useDocumentScrollThrottled from './HeaderHooks';
+import FilterLogo from './logos/FilterLogo';
+import AdminLogo from './logos/AdminLogo';
+import {useSelector} from 'react-redux';
 
 const Header = () => {
 
@@ -25,10 +28,15 @@ const Header = () => {
 
     const shadowStyle = shouldShowShadow ? styles.shadow : '';
     const hiddenStyle = shouldHideHeader ? styles.hidden : '';
+    const isAdmin = useSelector(state => state.user.role === 'ADMIN');
 
     return (
         <header className={`${shadowStyle} ${hiddenStyle}`}>
-            <MainLogo className={styles.main_logo} />
+            <MainLogo className={styles.mainLogo} />
+            <div className={styles.headerBtnContainer}>
+                <FilterLogo className={styles.filterLogo} />
+                {isAdmin && <AdminLogo className={styles.adminLogo} />}
+            </div>
         </header>
     )
 }
