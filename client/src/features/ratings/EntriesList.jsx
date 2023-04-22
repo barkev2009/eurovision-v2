@@ -9,7 +9,7 @@ const EntriesList = () => {
 
     return (
         <div className={styles.mainContainer}>
-            {ratings.map(item => <EntryContainer entryData={item} />)}
+            {ratings.map(item => <EntryContainer key={item.id} entryData={item} />)}
         </div>
     )
 }

@@ -5,6 +5,17 @@
     padding: 2vw 0vw;
 }
 
+.clickBox {
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: all;
+    z-index: 1;
+    /* display: none; */
+}
+
 .starContainer {
     position: relative;
     display: block;
@@ -20,7 +31,6 @@
     width: 20vw;
     stroke: yellow;
     position: absolute;
-    clip-path: inset(0 50% 0 0);
 }
 
 .starParams {
@@ -51,7 +61,7 @@ input {
     color: white;
     background-color: rgb(23, 23, 40);
     border: none;
-    /* width: 15vw; */
+    width: 45vw;
     display: block;
     padding-left: 25vw;
     padding-top: 1vw;

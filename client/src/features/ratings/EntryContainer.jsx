@@ -18,11 +18,11 @@ const EntryContainer = ({ entryData }) => {
             </div>
 
 
-            <StarContainer starName={'Чистота исполнения'} starValue={0.5} />
-            <StarContainer starName={'Наличие шоу'} starValue={0.5} />
-            <StarContainer starName={'Сложность песни'} starValue={0.5} />
-            <StarContainer starName={'Оригинальность'} starValue={0.5} />
-            <StarContainer starName={'Личная симпатия'} starValue={0.5} />
+            <StarContainer starName={'Чистота исполнения'} initialStarValue={0.3} />
+            <StarContainer starName={'Наличие шоу'} initialStarValue={0.5} />
+            <StarContainer starName={'Сложность песни'} initialStarValue={0.5} />
+            <StarContainer starName={'Оригинальность'} initialStarValue={0.5} />
+            <StarContainer starName={'Личная симпатия'} initialStarValue={0.5} />
 
             {/* <p>{JSON.stringify(entryData)}</p> */}
         </div>
