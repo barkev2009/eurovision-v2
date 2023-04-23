@@ -2,15 +2,15 @@
     display: flex;
     float: left;
     width: 100%;
-    padding: 2vw 0vw;
+    padding-top: 1vw;
 }
 
 .clickBox {
-    width: 20vw;
-    height: 20vw;
+    width: 18vw;
+    height: 18vw;
     position: absolute;
     top: 0;
-    left: 0;
+    left: -1vw;
     pointer-events: all;
     z-index: 1;
     /* display: none; */
@@ -22,44 +22,36 @@
 }
 
 .starBack {
-    width: 20vw;
+    width: 18vw;
     stroke: gray;
     position: absolute;
+    left: -1vw;
 }
 
 .starFront {
-    width: 20vw;
+    width: 18vw;
     stroke: yellow;
     position: absolute;
+    left: -1vw;
 }
 
 .starParams {
     display: inline-block;
-    padding-top: 2vw;
+    padding-top: 2.5vw;
 }
 
 .starName {
-    font-size: 5vw;
+    font-size: 4vw;
     color: white;
     padding-left: 25vw;
     text-align: start;
     position: relative;
 }
 
-/* .starName::after {
-    content: '';
-    width: 30vw;
-    height: 0.1vw;
-    background-color: white;
-    position: absolute;
-    top: 8vw;
-    left: 25vw;
-} */
-
 input {
     font-size: 5vw;
     color: white;
-    background-color: rgb(23, 23, 40);
+    background-color: transparent;
     border: none;
     width: 45vw;
     display: block;

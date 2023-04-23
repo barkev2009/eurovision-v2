@@ -4,6 +4,7 @@
 
 img {
     width: 5vw;
+    float: left;
 }
 
 p {
@@ -19,7 +20,7 @@ p {
     }
 
     img {
-        width: 20vw;
+        width: 15vw;
     }
 
     .entryContainer {
@@ -29,31 +30,95 @@ p {
     }
 
     .countryNameWrapper {
-        display: inline-block;
         overflow-x: scroll;
-        width: 60vw;
-        padding-left: 10vw;
+        width: 50vw;
+        padding-left: 5vw;
+        float: left;
+        margin-bottom: 2vw;
     }
 
     .countryName {
         color: white;
-        font-size: 8vw;
+        font-size: 6vw;
         text-align: start;
         float: left;
     }
 
     .tableItemWrapper {
-        display: inline-block;
+        /* display: inline-block; */
         overflow-x: scroll;
-        width: 80vw;
+        width: 60vw;
     }
 
     .tableItem {
         color: white;
         /* padding: 0 10vw; */
-        font-size: 8vw;
+        font-size: 6vw;
         float: left;
         text-align: start;
         white-space: nowrap;
+    }
+
+    .entryParams {
+        position: relative;
+        float: left;
+    }
+
+    .entryOrder {
+        float: left;
+        color: white;
+        font-size: 6vw;
+        display: inline;
+        width: 15vw;
+        height: 15vw;
+        border: 1px solid white;
+        padding-top: 2vw;
+        margin-right: 5vw;
+        margin-top: 2vw;
+    }
+
+    .entryNames {
+        display: inline;
+        float: left;
+    }
+
+    .qualifier {
+        color: white;
+        float: left;
+        padding: 5vw;
+        width: 80vw;
+        position: relative;
+        margin: auto;
+        font-size: 5vw;
+        text-align: center;
+        border: 2px solid white;
+        margin-top: 10vw;
+    }
+
+    .placeInFinal {
+        color: white;
+        float: left;
+        padding: 5vw;
+        padding-left: 30vw;
+        width: 80vw;
+        position: relative;
+        margin: auto;
+        font-size: 5vw;
+        text-align: center;
+        border: 2px solid white;
+        margin-top: 10vw;
+    }
+
+    .placeValue {
+        width: 10vw;
+        float: left;
+        padding: 0;
+        font-size: 7vw;
+    }
+
+    .placeValue + div {
+        width: fit-content;
+        display: inline;
+        float: left;
     }
 }
