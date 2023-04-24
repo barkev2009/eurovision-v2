@@ -1,19 +1,46 @@
 import React, { useState } from 'react'
 import StarIcon from './StarIcon';
 import styles from './Star.module.css';
+import { useDispatch } from 'react-redux';
+import { editRating } from './ratingsSlice';
 
-const StarContainer = ({ starName, initialStarValue }) => {
+const StarContainer = ({ starName, entryData, ratingName }) => {
 
-    const [starValue, setStarValue] = useState(initialStarValue);
+    const [starValue, setStarValue] = useState(entryData[ratingName]);
+    const dispatch = useDispatch();
+
+    const setValue = (value) => {
+        setStarValue(value);
+        dispatch(
+            editRating(
+                {
+                    id: entryData.id,
+                    [ratingName]: value
+                }
+            )
+        )
+    }
 
     const starHandler = (e) => {
         const curValue = Math.round((e.clientX - e.target.offsetWidth / 2) / e.target.offsetWidth * 100) / 100;
         if (curValue < 0.15) {
-            setStarValue(0);
+            setValue(0);
+
         } else if (curValue > 0.85) {
-            setStarValue(1);
+            setValue(1);
         } else {
-            setStarValue(curValue);
+            setValue(curValue);
+        }
+    }
+
+    const inputHandler = (e) => {
+        const curValue = Number(e.target.value);
+        if (curValue < 0.15) {
+            setValue(0);
+        } else if (curValue > 0.85) {
+            setValue(1);
+        } else {
+            setValue(curValue);
         }
     }
 
@@ -26,7 +53,7 @@ const StarContainer = ({ starName, initialStarValue }) => {
             </div>
             <div className={styles.starParams}>
                 <div className={styles.starName}>{starName}</div>
-                <input type="number" value={starValue} onChange={e => setStarValue(e.target.value)} />
+                <input type="number" value={starValue} onChange={inputHandler} />
             </div>
         </div>
     )

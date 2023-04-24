@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Rating.module.css';
-import StarContainer from './StarContainer';
 import Qualifier from './Qualifier';
 import PlaceInFinal from './PlaceInFinal';
+import RatingContainer from './RatingContainer';
 
 const EntryContainer = ({ entryData }) => {
 
@@ -30,11 +30,7 @@ const EntryContainer = ({ entryData }) => {
                 </div>
             </div>
 
-            <StarContainer starName={'Чистота исполнения'} initialStarValue={0.3} />
-            <StarContainer starName={'Наличие шоу'} initialStarValue={0.5} />
-            <StarContainer starName={'Сложность песни'} initialStarValue={0.5} />
-            <StarContainer starName={'Оригинальность'} initialStarValue={0.5} />
-            <StarContainer starName={'Личная симпатия'} initialStarValue={0.5} />
+            <RatingContainer entryData={entryData} />
 
             {
                 entryData.contestStep === 'GRAND_FINAL' ? <PlaceInFinal placeInFinal={entryData.placeInFinal} /> : <Qualifier qualifier={entryData.qualifier} />
