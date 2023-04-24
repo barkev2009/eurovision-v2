@@ -1224,7 +1224,7 @@ const createCountry = async (countryName) => {
     const dbCheck = await axios.get('http://localhost:5002/api/country/by_name/' + countryName.replace(' ', '%20'));
     if (dbCheck.data) {
       log('error', { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}` });
-      return { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}` };
+      return { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}`, countryId: dbCheck.data.id };
     }
 
     const mapValue = countryCodes.filter(item => item.label === countryName);
@@ -1247,7 +1247,7 @@ const createCountry = async (countryName) => {
     // Pass image stream from response directly to form
     form.append('image', response.data, { filename: fileName, contentType: 'image/svg+xml' });
 
-    const loginResp = await axios.post('http://localhost:5002/api/user/login', {login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD});
+    const loginResp = await axios.post('http://localhost:5002/api/user/login', { login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD });
     const resp = await axios.post('http://localhost:5002/api/country', { code: countryCode, name: countryName, icon: form }, {
       headers: {
         ...form.getHeaders(),
@@ -1257,9 +1257,8 @@ const createCountry = async (countryName) => {
 
     fs.renameSync(fileName, path.resolve(__dirname, '..', 'static', resp.data.icon));
     log('info', { function: 'utils/createCountry', status: 'success', message: `Country ${countryName} successfully created` });
-    return { function: 'utils/createCountry', status: 'success', message: `Country ${countryName} successfully created` };
+    return { function: 'utils/createCountry', status: 'success', message: `Country ${countryName} successfully created`, countryId: resp.data.id };
   } catch (error) {
-    // console.log(error);
     log('error', { function: 'utils/createCountry', status: 'fail', message: error.message });
     return { function: 'utils/createCountry', status: 'fail', message: error.message };
   }

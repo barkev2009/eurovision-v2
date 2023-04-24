@@ -1,6 +1,6 @@
 const ApiError = require('../error/ApiError');
 const { log } = require('../logs/logger');
-const { Rating, Contestant, Entry } = require('../models/models');
+const { Rating, Contestant, Entry, Country } = require('../models/models');
 
 class RatingController {
     async create(req, res, next) {
@@ -38,11 +38,13 @@ class RatingController {
             let calcOriginality;
             let calcSympathy;
 
-            purity ? calcPurity = purity : calcPurity = rating.purity;
-            show ? calcShow = show : calcShow = rating.show;
-            difficulty ? calcDifficulty = difficulty : calcDifficulty = rating.difficulty;
-            originality ? calcOriginality = originality : calcOriginality = rating.originality;
-            sympathy ? calcSympathy = sympathy : calcSympathy = rating.sympathy;
+            purity === null || purity === undefined ? calcPurity = rating.purity : calcPurity = purity;
+            show === null || show === undefined ? calcShow = rating.show : calcShow = show;
+            difficulty === null || difficulty === undefined ? calcDifficulty = rating.difficulty : calcDifficulty = difficulty;
+            originality === null || originality === undefined ? calcOriginality = rating.originality : calcOriginality = originality;
+            sympathy === null || sympathy === undefined ? calcSympathy = rating.sympathy : calcSympathy = sympathy;
+
+            console.log(calcPurity);
 
             const score = calcPurity + calcShow + calcDifficulty + calcOriginality + calcSympathy;
 
@@ -75,7 +77,7 @@ class RatingController {
             const rating = await Rating.findAll({ where: { userId: id } });
             return res.json(rating);
         } catch (error) {
-            return next(ApiError.internalError({ function: 'EntryController.getByUser', message: error.message }))
+            return next(ApiError.internalError({ function: 'RatingController.getByUser', message: error.message }))
         }
     }
 
@@ -85,7 +87,7 @@ class RatingController {
             const rating = await Rating.findOne({ where: { userId, entryId } });
             return res.json(rating);
         } catch (error) {
-            return next(ApiError.internalError({ function: 'EntryController.getByUserEntry', message: error.message }))
+            return next(ApiError.internalError({ function: 'RatingController.getByUserEntry', message: error.message }))
         }
     }
 
@@ -95,25 +97,33 @@ class RatingController {
 
             const result = await Rating.findAll(
                 {
-                    where: { userId},
+                    where: { userId },
                     include: [
                         {
                             model: Entry,
-                            where: {contest_step},
-                            required: true
-                        },
-                        {
-                            model: Contestant,
-                            where : {year},
-                            required: true
+                            where: { contest_step },
+                            required: true,
+                            include: [
+                                {
+                                    model: Contestant,
+                                    where: { year },
+                                    required: true,
+                                    include: [
+                                        {
+                                            model: Country
+                                        }
+                                    ]
+                                }
+                            ]
                         }
-                    ]
+                    ],
+                    order: [[Entry, 'entry_order', 'ASC']]
                 }
             );
 
             return res.json(result);
         } catch (error) {
-            return next(ApiError.internalError({ function: 'EntryController.getByUserContest', message: error.message }))
+            return next(ApiError.internalError({ function: 'RatingController.getByUserContest', message: error.message }))
         }
     }
 }

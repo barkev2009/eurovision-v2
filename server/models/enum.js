@@ -1,5 +1,5 @@
-const FIRST_SEMIFINAL = 'First Semifinal';
-const SECOND_SEMIFINAL = 'Second Semifinal';
+const FIRST_SEMIFINAL = 'First Semi-Final';
+const SECOND_SEMIFINAL = 'Second Semi-Final';
 const GRAND_FINAL = 'Grand Final';
 
 module.exports = {

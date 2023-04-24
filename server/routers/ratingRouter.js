@@ -4,7 +4,7 @@ const ratingController = require('../controllers/ratingController');
 const checkRole = require('../middleware/checkRoleMiddleware');
 
 router.post('/', checkRole('ADMIN'), ratingController.create);
-router.put('/:id', checkRole('ADMIN'), ratingController.edit);
+router.put('/:id', ratingController.edit);
 router.get('/by_id/:id', ratingController.getById);
 router.get('/by_user/:id', ratingController.getByUser);
 router.get('/by_user_entry', ratingController.getByUserEntry);

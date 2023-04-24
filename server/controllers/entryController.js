@@ -12,6 +12,12 @@ class EntryController {
             if (!contestant) {
                 return next(ApiError.internalError({ function: 'EntryController.create', message: `Участника с id=${contestantId} не существует` }));
             }
+
+            const entryCheck = await Entry.findAll({ where: { entry_order, contest_step, contestantId: contestant.id } });
+            if (entryCheck.length !== 0) {
+                return next(ApiError.internalError({ function: 'EntryController.create', message: `Выступление с id=${entryCheck[0].id} уже существует` }));
+            }
+
             const entry = await Entry.create({ entry_order, contest_step, contestantId: contestant.id });
 
             log('info', { message: 'CREATE', entry });
