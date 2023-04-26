@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import StarIcon from './StarIcon';
 import styles from './Star.module.css';
 import { useDispatch } from 'react-redux';
-import { editRating } from './ratingsSlice';
+import { editRating } from '../ratingsSlice';
 
 const StarContainer = ({ starName, entryData, ratingName }) => {
 

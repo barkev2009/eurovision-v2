@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Rating.module.css';
 import Qualifier from './Qualifier';
 import PlaceInFinal from './PlaceInFinal';
-import RatingContainer from './RatingContainer';
+import RatingContainer from './starComponents/RatingContainer';
 
 const EntryContainer = ({ entryData }) => {
 
@@ -14,7 +14,7 @@ const EntryContainer = ({ entryData }) => {
 
     return (
         <div className={styles.entryContainer}>
-            <img src={entryData.iconPath} alt='countryIcon' />
+            <img src={entryData.iconPath} alt={entryData.countryName} />
             <div className={styles.countryNameWrapper}>
                 <div className={styles.countryName}>{entryData.countryName}</div>
             </div>

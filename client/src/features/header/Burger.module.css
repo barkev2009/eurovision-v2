@@ -1,0 +1,154 @@
+.burger-btn {
+    width: 3vw;
+    height: 2.5vw;
+    position: relative;
+    float: right;
+    margin-right: 6vw;
+    margin-left: 2vw;
+    top: 0.25vw;
+    cursor: pointer;
+}
+
+.burger-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 3vw;
+    height: 2px;
+    background-color: white;
+}
+
+.burger-btn span {
+    content: '';
+    position: absolute;
+    top: 1.25vw;
+    width: 3vw;
+    height: 2px;
+    background-color: white;
+}
+
+.burger-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 3vw;
+    height: 2px;
+    background-color: white;
+}
+
+.menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 6vw;
+    right: 0;
+    transform: translateX(100%);
+    transition: all 0.2s ease-in-out;
+}
+
+.active {
+    transform: translateX(0);
+}
+
+.blur {
+    width: 100vw;
+    height: 100vh;
+    right: 30%;
+    backdrop-filter: blur(5px);
+    position: absolute;
+}
+
+.menu__header {
+    color: white;
+}
+
+.menu__content {
+    width: 30%;
+    height: 100%;
+    background-color: rgb(23, 23, 30);
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu__content img {
+    width: 2vw;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+}
+
+ul li {
+    text-decoration: none;
+    margin: 0.3vw;
+    text-align: start;
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    margin: 1vw;
+    text-align: start;
+}
+
+
+.menu__header {
+    font-size: 2vw;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .burger-btn {
+        width: 8vw;
+        height: 8vw;
+        margin-right: 8vw;
+        margin-left: 1vw;
+        top: 1vw;
+    }
+
+    .burger-btn::before, .burger-btn::after {
+        width: 8vw;
+    }
+
+    .burger-btn span {
+        top: 4vw;
+        width: 8vw;
+    }
+
+    .menu {
+        top: 15vw;
+    }
+
+    .menu__content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .blur {
+        display: none;
+    }
+
+    .menu__header {
+        font-size: 10vw;
+    }
+
+    .menu__content img {
+        width: 8vw;
+    }
+
+    ul li {
+        margin: 1vw;
+    }
+
+    ul li a {
+        margin: 5vw;
+    }
+}
