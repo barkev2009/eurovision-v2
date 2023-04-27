@@ -14,6 +14,7 @@ const createContestantRating = async (
     , year
     , entry_order
     , contest_step
+    , place
 ) => {
 
 
@@ -22,28 +23,47 @@ const createContestantRating = async (
     let entry;
     let rating;
 
-    const contestantCheck = await Contestant.findAll({ where: { artist_name, song_name, year } });
-    if (contestantCheck.length !== 0) {
+    const contestantCheck = await Contestant.findOne({ where: { artist_name, song_name, year } });
+    console.log(contestantCheck);
+    // console.log(contestantCheck.length);
+    if (contestantCheck) {
         console.log('Contestant found');
-        contestant = contestantCheck[0];
+        contestant = contestantCheck;
     } else {
         contestant = await Contestant.create({ artist_name, song_name, year, countryId: country.countryId });
         console.log('Contestant created');
     }
 
-    const entryCheck = await Entry.findAll({ where: { entry_order, contest_step, contestantId: contestant.id } });
-    if (entryCheck.length !== 0) {
+    if (Number(place) !== 0) {
+        await Contestant.update(
+            {
+                place_in_final: Number(place)
+            },
+            {
+                where: {
+                    id: contestant.id
+                }
+            }
+        );
+    }
+
+    const entryCheck = await Entry.findOne({ where: { entry_order, contest_step, contestantId: contestant.id } });
+    console.log(entryCheck);
+    // console.log(entryCheck.length);
+    if (entryCheck) {
         console.log('Entry found');
-        entry = entryCheck[0];
+        entry = entryCheck;
     } else {
         entry = await Entry.create({ entry_order, contest_step, contestantId: contestant.id });
         console.log('Entry created');
     }
 
-    const ratingCheck = await Rating.findAll({ where: { userId: '877d4152-14b4-7793-e143-1025604c2b34', entryId: entry.id } });
-    if (ratingCheck.length !== 0) {
+    const ratingCheck = await Rating.findOne({ where: { userId: '877d4152-14b4-7793-e143-1025604c2b34', entryId: entry.id } });
+    console.log(ratingCheck);
+    // console.log(ratingCheck.length);
+    if (ratingCheck) {
         console.log('Rating found');
-        rating = ratingCheck[0];
+        rating = ratingCheck;
     } else {
         rating = await Rating.create(
             {
@@ -65,24 +85,19 @@ const createContestantRating = async (
     console.log(contestant.id);
     console.log(entry.id);
     console.log(rating.id);
-    return true;
 }
 
-const test = async () => {
+const test = async (fileName) => {
 
-    fs.createReadStream(path.resolve(__dirname, 'entries_2023.csv'))
+    let allData = [];
+
+    fs.createReadStream(path.resolve(__dirname, 'db_files', fileName + '.csv'))
         .pipe(csv())
         .on('data', async (data) => {
             try {
-                console.log(`|${data.COUNTRY.trim()}|`);
-                await createContestantRating(
-                    data.COUNTRY.trim(),
-                    data.ARTIST.trim(),
-                    data.SONG.trim(),
-                    Number(data.YEAR.trim()),
-                    Number(data.ORDER.trim()),
-                    data.CONTEST_STEP.trim()
-                );
+                // console.log(`|${data.COUNTRY.trim()}|`);
+                // console.log('SOMETHING_ELSE');
+                allData.push(data);
                 //perform the operation
             }
             catch (err) {
@@ -91,7 +106,34 @@ const test = async () => {
         })
         .on('end', function () {
             //some final operation
+            // console.log(allData);
+            const body = JSON.stringify(allData);
+            var localPath = path.resolve(__dirname, 'db_files', fileName + '.json');
+            fs.writeFile(localPath, body, function (err) { });
         });
 }
 
-test();
+const test2 = async (fileName) => {
+
+
+    const allData = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db_files', fileName + '.json'), 'utf8'));
+    console.log(allData);
+
+    let data;
+    for (let i = 0; i < allData.length; i++) {
+        data = allData[i];
+        if (data.COUNTRY) {
+            await createContestantRating(
+                data.COUNTRY.trim(),
+                data.ARTIST.trim(),
+                data.SONG.trim(),
+                Number(data.YEAR.trim()),
+                Number(data.ORDER.trim()),
+                data.CONTEST_STEP.trim(),
+                Number(data.PLACE.trim())
+            );
+        }
+    }
+};
+
+test2('entries_2022');

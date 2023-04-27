@@ -3,21 +3,30 @@ import styles from './Burger.module.css';
 
 const Burger = ({ header, items, active, setActive }) => {
 
+    const clickHandler = (id) => {
+        return (e) => {
+            e.preventDefault();
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     return (
         <div className={active ? `${styles.menu} ${styles.active}` : styles.menu}>
             <div onClick={() => setActive(!active)} className={styles.blur}></div>
             <div className={styles.menu__content}>
                 <div className={styles.menu__header}>{header}</div>
-                <ul>
-                    {
-                        items && items.map(
-                            item => <li key={item.name} onClick={() => setActive(!active)}>
-                                <img src={item.icon} alt={item.name} />
-                                <a href={item.href}>{item.name}</a>
-                            </li>
-                        )
-                    }
-                </ul>
+                <div className={styles.menu__content_wrapper}>
+                    <ul>
+                        {
+                            items && items.map(
+                                item => <li key={item.name} onClick={() => setActive(!active)}>
+                                    <img src={item.icon} alt={item.name} />
+                                    <a onClick={clickHandler(item.id)} href={item.href}>{`${item.order}. ${item.name}`}</a>
+                                </li>
+                            )
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     )

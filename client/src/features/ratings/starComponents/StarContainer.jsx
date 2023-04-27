@@ -22,14 +22,16 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
     }
 
     const starHandler = (e) => {
-        const curValue = Math.round((e.clientX - e.target.offsetWidth / 2) / e.target.offsetWidth * 100) / 100;
-        if (curValue < 0.15) {
-            setValue(0);
+        if (document.querySelector('[class*=active]') === null) {
+            const curValue = Math.round((e.clientX - e.target.offsetWidth / 2) / e.target.offsetWidth * 100) / 100;
+            if (curValue < 0.15) {
+                setValue(0);
 
-        } else if (curValue > 0.85) {
-            setValue(1);
-        } else {
-            setValue(curValue);
+            } else if (curValue > 0.85) {
+                setValue(1);
+            } else {
+                setValue(curValue);
+            }
         }
     }
 
@@ -47,7 +49,7 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
     return (
         <div className={styles.starBlock}>
             <div className={styles.starContainer}>
-                <div onClick={starHandler}  className={styles.clickBox}></div>
+                <div onClick={starHandler} className={styles.clickBox}></div>
                 <StarIcon className={styles.starBack} starPerc={0} />
                 <StarIcon className={styles.starFront} starPerc={(1 - starValue) * 100} />
             </div>

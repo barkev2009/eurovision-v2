@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { editRatingAPI, getRatingsByContestAPI } from './ratingAPI';
+import { editQualifierAPI, editRatingAPI, getRatingsByContestAPI } from './ratingAPI';
 
 const initialState = {
   ratings: []
@@ -13,6 +13,11 @@ export const getRatingsByContest = createAsyncThunk(
 export const editRating = createAsyncThunk(
   'ratings/editRating',
   editRatingAPI
+)
+
+export const editQualifier = createAsyncThunk(
+  'ratings/editQualifier',
+  editQualifierAPI
 )
 
 export const ratingSlice = createSlice({
@@ -31,6 +36,7 @@ export const ratingSlice = createSlice({
             item => ({
               id: item.id,
               userId: item.userId,
+              contestantId: item.entry.contestant.id,
               purity: item.purity,
               difficulty: item.difficulty,
               show: item.show,
@@ -59,6 +65,15 @@ export const ratingSlice = createSlice({
             rating.originality = action.payload.rating.originality;
             rating.sympathy = action.payload.rating.sympathy;
             rating.score = action.payload.rating.score;
+          }
+        }
+      )
+      .addCase(
+        editQualifier.fulfilled, (state, action) => {
+          if (action.payload.result[0] === 1) {
+
+            const rating = state.ratings.filter(item => item.contestantId === action.payload.contestant.id)[0];
+            rating.qualifier = action.payload.contestant.qualifier;
           }
         }
       )

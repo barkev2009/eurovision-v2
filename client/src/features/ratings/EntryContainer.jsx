@@ -3,6 +3,7 @@ import styles from './Rating.module.css';
 import Qualifier from './Qualifier';
 import PlaceInFinal from './PlaceInFinal';
 import RatingContainer from './starComponents/RatingContainer';
+import { GRAND_FINAL } from '../../enum';
 
 const EntryContainer = ({ entryData }) => {
 
@@ -13,13 +14,13 @@ const EntryContainer = ({ entryData }) => {
     }
 
     return (
-        <div className={styles.entryContainer}>
+        <div id={entryData.id} className={styles.entryContainer}>
             <img src={entryData.iconPath} alt={entryData.countryName} />
             <div className={styles.countryNameWrapper}>
                 <div className={styles.countryName}>{entryData.countryName}</div>
             </div>
             <div className={styles.entryParams}>
-                <div className={styles.entryOrder} onClick={orderHandler}>{showOrder ? entryData.entryOrder: entryData.score.toFixed(2)}</div>
+                <div className={styles.entryOrder} onClick={orderHandler}>{showOrder ? entryData.entryOrder : entryData.score.toFixed(2)}</div>
                 <div className={styles.entryNames}>
                     <div className={styles.tableItemWrapper}>
                         <div className={styles.tableItem}>{entryData.artistName}</div>
@@ -33,7 +34,7 @@ const EntryContainer = ({ entryData }) => {
             <RatingContainer entryData={entryData} />
 
             {
-                entryData.contestStep === 'GRAND_FINAL' ? <PlaceInFinal placeInFinal={entryData.placeInFinal} /> : <Qualifier qualifier={entryData.qualifier} />
+                entryData.contestStep === GRAND_FINAL ? <PlaceInFinal placeInFinal={entryData.placeInFinal} /> : <Qualifier qualifier={entryData.qualifier} contestantId={entryData.contestantId} />
             }
         </div>
 
