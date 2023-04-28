@@ -30,7 +30,7 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
             } else if (curValue > 0.85) {
                 setValue(1);
             } else {
-                setValue(curValue);
+                setValue(Math.ceil(curValue * 100 / 5) * 5 / 100);
             }
         }
     }
@@ -42,7 +42,7 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
         } else if (curValue > 0.85) {
             setValue(1);
         } else {
-            setValue(curValue);
+            setValue(Math.ceil(curValue * 100 / 5) * 5 / 100);
         }
     }
 
