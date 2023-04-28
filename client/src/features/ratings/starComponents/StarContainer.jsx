@@ -26,9 +26,10 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
             const curValue = Math.round((e.clientX - e.target.offsetWidth / 2) / e.target.offsetWidth * 100) / 100;
             if (curValue < 0.15) {
                 setValue(0);
-
             } else if (curValue > 0.85) {
                 setValue(1);
+            } else if (curValue === 0.55) {
+                setValue(0.55);
             } else {
                 setValue(Math.ceil(curValue * 100 / 5) * 5 / 100);
             }
@@ -41,6 +42,8 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
             setValue(0);
         } else if (curValue > 0.85) {
             setValue(1);
+        } else if (curValue === 0.55) {
+            setValue(0.55);
         } else {
             setValue(Math.ceil(curValue * 100 / 5) * 5 / 100);
         }
