@@ -6,7 +6,7 @@ import { editPlace } from './ratingsSlice';
 const PlaceInFinal = ({ placeInFinal, contestantId }) => {
 
     const [place, setPlace] = useState(placeInFinal);
-    const [borderColor, setBorderColor] = useState('white');
+    const [borderColor, setBorderColor] = useState('gray');
     const userRole = useSelector(state => state.user.user.role);
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId }) => {
                 setBorderColor('orange');
                 break;
             default:
-                setBorderColor('white');
+                setBorderColor('gray');
                 break;
         }
     }
