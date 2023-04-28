@@ -1,5 +1,5 @@
-import { $authHost, $host } from ".";
 import jwt_decode from 'jwt-decode';
+import { $authHost, $host } from '../http';
 
 export const register = async (name, login, password) => {
     const {data} = await $host.post('api/user/register', { name, login, password });

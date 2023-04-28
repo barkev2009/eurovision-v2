@@ -1,0 +1,46 @@
+.auth_container {
+    margin: auto;
+    margin-top: 30vh;
+    width: 50vw;
+    border: 1px solid #7b7a7a;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert-danger {
+    color: rgb(140, 0, 0);
+}
+
+.form-group {
+    padding: 0;
+}
+
+.form-group input {
+    width: 60vw;
+    float: left;
+    margin: 2vw;
+    padding: 2vw;
+    border: 1px solid gray;
+    height: 10vw;
+}
+
+button {
+    margin-top: 10vw;
+    width: 60vw;
+    height: 10vw;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 4vw;
+}
+
+
+@media screen and (max-width: 600px) {
+    .auth_container {
+        width: 80vw;
+        margin-top: 20vh;
+    }
+}

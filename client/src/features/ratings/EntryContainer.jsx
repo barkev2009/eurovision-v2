@@ -4,6 +4,7 @@ import Qualifier from './Qualifier';
 import PlaceInFinal from './PlaceInFinal';
 import RatingContainer from './starComponents/RatingContainer';
 import { GRAND_FINAL } from '../../enum';
+import { useSelector } from 'react-redux';
 
 const EntryContainer = ({ entryData }) => {
 
@@ -34,7 +35,7 @@ const EntryContainer = ({ entryData }) => {
             <RatingContainer entryData={entryData} />
 
             {
-                entryData.contestStep === GRAND_FINAL ? <PlaceInFinal placeInFinal={entryData.placeInFinal} /> : <Qualifier qualifier={entryData.qualifier} contestantId={entryData.contestantId} />
+                entryData.contestStep === GRAND_FINAL ? <PlaceInFinal placeInFinal={entryData.placeInFinal} contestantId={entryData.contestantId} /> : <Qualifier qualifier={entryData.qualifier} contestantId={entryData.contestantId} />
             }
         </div>
 

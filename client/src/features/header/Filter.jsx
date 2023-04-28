@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Burger.module.css';
-import axios from 'axios';
 import { $host } from '../http';
 import { FIRST_SEMIFINAL } from '../../enum';
 import { useDispatch } from 'react-redux';
 import { getRatingsByContest } from '../ratings/ratingsSlice';
+import { useLocation } from 'react-router-dom';
 
 const Filter = ({ items, active, setActive }) => {
 
@@ -14,7 +14,27 @@ const Filter = ({ items, active, setActive }) => {
     const [curYear, setCurYear] = useState(2023);
     const [curStep, setCurStep] = useState(FIRST_SEMIFINAL);
 
+    const location = useLocation();
+
     const dispatch = useDispatch();
+    const sendRequest = () => {
+        setTimeout(
+            () => {
+                document
+                    .querySelector('[class*=Rating_entryContainer]')
+                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100
+        );
+        dispatch(
+            getRatingsByContest(
+                {
+                    userId: location.pathname.split('/')[2],
+                    year: curYear,
+                    contest_step: curStep
+                }
+            )
+        );
+    }
 
     const clickHandler = () => {
         setActive(!active);
@@ -23,18 +43,8 @@ const Filter = ({ items, active, setActive }) => {
             () => {
                 document
                     .querySelector('[class*=Rating_entryContainer]')
-                    .scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100
-        );
-
-        dispatch(
-            getRatingsByContest(
-                {
-                    userId: '877d4152-14b4-7793-e143-1025604c2b34',
-                    year: curYear,
-                    contest_step: curStep
-                }
-            )
         );
     }
 
@@ -50,7 +60,13 @@ const Filter = ({ items, active, setActive }) => {
                     setSteps(resp.data.map(item => item.contest_step));
                 }
             );
+            sendRequest();
         }, []
+    );
+    useEffect(
+        () => {
+            sendRequest();
+        }, [curYear, curStep]
     );
 
     return (

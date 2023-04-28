@@ -9,7 +9,7 @@ import Burger from './Burger';
 import Filter from './Filter';
 
 const Header = () => {
-    
+
     const isAdmin = useSelector(state => state.user.role === 'ADMIN');
 
     const [active, setActive] = useState(false);
@@ -19,17 +19,15 @@ const Header = () => {
 
     useEffect(
         () => {
-            if (ratings.length !== 0) {
-                setCountryItems(ratings.map(
-                    rating => ({
-                        name: rating.countryName,
-                        icon: rating.iconPath,
-                        id: rating.id,
-                        order: rating.entryOrder,
-                        href: '/'
-                    })
-                ));
-            }
+            setCountryItems(ratings.map(
+                rating => ({
+                    name: rating.countryName,
+                    icon: rating.iconPath,
+                    id: rating.id,
+                    order: rating.entryOrder,
+                    href: '/'
+                })
+            ));
         }, [ratings]
     );
 

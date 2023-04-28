@@ -1,7 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const { FIRST_SEMIFINAL } = require('../models/enum');
-const { Rating } = require('../models/models');
+const { Rating, User } = require('../models/models');
 const { Contestant, Entry } = require('../models/models');
 const { createCountry } = require("./country");
 const csv = require('csv-parser');
@@ -58,26 +58,33 @@ const createContestantRating = async (
         console.log('Entry created');
     }
 
-    const ratingCheck = await Rating.findOne({ where: { userId: '877d4152-14b4-7793-e143-1025604c2b34', entryId: entry.id } });
-    console.log(ratingCheck);
-    // console.log(ratingCheck.length);
-    if (ratingCheck) {
-        console.log('Rating found');
-        rating = ratingCheck;
-    } else {
-        rating = await Rating.create(
-            {
-                userId: '877d4152-14b4-7793-e143-1025604c2b34',
-                entryId: entry.id,
-                purity: 0,
-                show: 0,
-                difficulty: 0,
-                originality: 0,
-                sympathy: 0,
-                score: 0
-            }
-        );
-        console.log('Rating created');
+    const users = await User.findAll();
+
+    let user;
+    let ratingCheck
+    for (let i = 0; i < users.length; i++) {
+        user = users[i];
+        ratingCheck = await Rating.findOne({ where: { userId: user.id, entryId: entry.id } });
+        console.log(ratingCheck);
+        // console.log(ratingCheck.length);
+        if (ratingCheck) {
+            console.log('Rating found');
+            rating = ratingCheck;
+        } else {
+            rating = await Rating.create(
+                {
+                    userId: user.id,
+                    entryId: entry.id,
+                    purity: 0,
+                    show: 0,
+                    difficulty: 0,
+                    originality: 0,
+                    sympathy: 0,
+                    score: 0
+                }
+            );
+            console.log('Rating created');
+        }
     }
 
 

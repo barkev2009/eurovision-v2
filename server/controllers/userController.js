@@ -1,6 +1,6 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
-const { User } = require('../models/models');
+const { User, Rating } = require('../models/models');
 const jwt = require('jsonwebtoken');
 const { log } = require('../logs/logger');
 
@@ -44,7 +44,25 @@ class UserController {
         const user = await User.create({ name, login, password: hashPassword, role });
         const token = generateJWT(user.id, user.name, user.login, user.role);
 
-        log('info', {message: 'REGISTER', token});
+        const ratings = await Rating.findAll(
+            {
+                include: [
+                    {
+                        model: User,
+                        required: true,
+                        where: {role: 'ADMIN'}
+                    }
+                ]
+            }
+        );
+        
+        let rating;
+        for (let i = 0; i < ratings.length; i++) {
+            rating = ratings[i];
+            await Rating.create({ userId: user.id, entryId: rating.entryId});
+        }
+
+        log('info', { message: 'REGISTER', token });
         return resp.json({ token })
 
     }
@@ -63,14 +81,14 @@ class UserController {
         }
 
         const token = generateJWT(candidate.id, candidate.name, candidate.login, candidate.role);
-        log('info', {message: 'LOGIN', token});
+        log('info', { message: 'LOGIN', token });
         return resp.json({ token })
     }
 
     async checkAuth(req, resp, next) {
 
         const token = generateJWT(req.user.id, req.user.name, req.user.login, req.user.role);
-        log('info', {message: 'CHECK_AUTH', token});
+        log('info', { message: 'CHECK_AUTH', token });
         return resp.json({ token })
     }
 }
