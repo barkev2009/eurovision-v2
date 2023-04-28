@@ -98,7 +98,7 @@ const test = async (fileName) => {
 
     let allData = [];
 
-    fs.createReadStream(path.resolve(__dirname, 'db_files', fileName + '.csv'))
+    fs.createReadStream(path.resolve(__dirname, 'db_files/csv', fileName + '.csv'))
         .pipe(csv())
         .on('data', async (data) => {
             try {
@@ -115,7 +115,7 @@ const test = async (fileName) => {
             //some final operation
             // console.log(allData);
             const body = JSON.stringify(allData);
-            var localPath = path.resolve(__dirname, 'db_files', fileName + '.json');
+            var localPath = path.resolve(__dirname, 'db_files/json', fileName + '.json');
             fs.writeFile(localPath, body, function (err) { });
         });
 }
@@ -123,7 +123,7 @@ const test = async (fileName) => {
 const test2 = async (fileName) => {
 
 
-    const allData = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db_files', fileName + '.json'), 'utf8'));
+    const allData = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db_files/json', fileName + '.json'), 'utf8'));
     console.log(allData);
 
     let data;
@@ -143,4 +143,4 @@ const test2 = async (fileName) => {
     }
 };
 
-test2('entries_2022');
+test2('entries_2019');
