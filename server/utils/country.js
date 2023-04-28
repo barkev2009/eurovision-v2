@@ -3,6 +3,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 const path = require('path');
 const { log } = require("../logs/logger");
+require('dotenv').config();
 
 const countryCodes = [
   {
@@ -1221,7 +1222,7 @@ const countryCodes = [
 
 const createCountry = async (countryName) => {
   try {
-    const dbCheck = await axios.get('http://localhost:5002/api/country/by_name/' + countryName.replace(' ', '%20'));
+    const dbCheck = await axios.get(process.env.SERVER_URL + '/api/country/by_name/' + countryName.replace(' ', '%20'));
     if (dbCheck.data) {
       log('error', { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}` });
       return { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}`, countryId: dbCheck.data.id };
@@ -1247,8 +1248,8 @@ const createCountry = async (countryName) => {
     // Pass image stream from response directly to form
     form.append('image', response.data, { filename: fileName, contentType: 'image/svg+xml' });
 
-    const loginResp = await axios.post('http://localhost:5002/api/user/login', { login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD });
-    const resp = await axios.post('http://localhost:5002/api/country', { code: countryCode, name: countryName, icon: form }, {
+    const loginResp = await axios.post(process.env.SERVER_URL + '/api/user/login', { login: process.env.ADMIN_LOGIN, password: process.env.ADMIN_PASSWORD });
+    const resp = await axios.post(process.env.SERVER_URL + '/api/country', { code: countryCode, name: countryName, icon: form }, {
       headers: {
         ...form.getHeaders(),
         'Authorization': `Bearer ${loginResp.data.token}`
