@@ -8,7 +8,7 @@ class CountryController {
     async create(req, res, next) {
         try {
             const { name, code } = req.body;
-            const countryCheck = await Country.findAll({where: {code}});
+            const countryCheck = await Country.findAll({where: {code, name}});
             if (countryCheck.length !== 0) {
                 return next(ApiError.badRequest({function: 'CountryController.create', message: 'Страна уже существует'}));
             }
