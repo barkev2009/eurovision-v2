@@ -143,4 +143,4 @@ const test2 = async (fileName) => {
     }
 };
 
-test2('entries_2019');
+test2('entries_2018');
