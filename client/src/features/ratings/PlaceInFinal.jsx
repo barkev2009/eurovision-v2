@@ -51,7 +51,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId }) => {
     return (
         <div className={styles.placeInFinal} style={{borderColor}}>
             <input className={styles.placeValue} type="number" value={place} onChange={placeHandler} />
-            <div>place</div>
+            <div>место</div>
         </div>
     )
 }
