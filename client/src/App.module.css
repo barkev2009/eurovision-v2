@@ -1,0 +1,19 @@
+.heart-animate {
+    width: 50vw;
+    margin: auto;
+    margin-top: 30vh;
+    transform-origin: center;
+    animation: heart-beat infinite 1s ease-in-out;
+}
+
+@keyframes heart-beat {
+    0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+}

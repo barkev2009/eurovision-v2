@@ -62,3 +62,18 @@ input {
 input:focus {
     outline: none;
 }
+
+@media screen and (min-width: 600px) {
+    .starFront, .starBack, .clickBox {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .starName {
+        display: none;
+    }
+
+    .clickBox {
+        cursor: pointer;
+    }
+}

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import burgerStyles from './Burger.module.css';
-import MainLogo from './logos/MainLogo';
-import FilterLogo from './logos/FilterLogo';
-import AdminLogo from './logos/AdminLogo';
+import MainLogo from '../icons/MainLogo';
+import FilterLogo from '../icons/FilterLogo';
+import AdminLogo from '../icons/AdminLogo';
 import { useSelector } from 'react-redux';
 import Burger from './Burger';
 import Filter from './Filter';
@@ -39,7 +39,7 @@ const Header = () => {
                 {isAdmin && <AdminLogo className={styles.adminLogo} />}
                 <div onClick={() => setActive(!active)} className={burgerStyles['burger-btn']}><span /></div>
                 <Burger header={'Участники'} items={countryItems} active={active} setActive={setActive} />
-                <Filter items={[]} active={filterActive} setActive={setFilterActive} />
+                <Filter active={filterActive} setActive={setFilterActive} />
             </div>
         </header>
     )

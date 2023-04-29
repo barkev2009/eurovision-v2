@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Burger.module.css';
 import { $host } from '../http';
 import { FIRST_SEMIFINAL } from '../../enum';
@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getRatingsByContest } from '../ratings/ratingsSlice';
 import { useLocation } from 'react-router-dom';
 
-const Filter = ({ items, active, setActive }) => {
+const Filter = ({ active, setActive }) => {
 
     const [years, setYears] = useState([]);
     const [steps, setSteps] = useState([]);
@@ -17,24 +17,27 @@ const Filter = ({ items, active, setActive }) => {
     const location = useLocation();
 
     const dispatch = useDispatch();
-    const sendRequest = () => {
-        setTimeout(
-            () => {
-                document
-                    .querySelector('[class*=Rating_entryContainer]')
-                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100
-        );
-        dispatch(
-            getRatingsByContest(
-                {
-                    userId: location.pathname.split('/')[2],
-                    year: curYear,
-                    contest_step: curStep
-                }
-            )
-        );
-    }
+
+    const sendRequest = useCallback(
+        () => {
+            setTimeout(
+                () => {
+                    document
+                        .querySelector('[class*=Rating_entryContainer]')
+                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100
+            );
+            dispatch(
+                getRatingsByContest(
+                    {
+                        userId: location.pathname.split('/')[2],
+                        year: curYear,
+                        contest_step: curStep
+                    }
+                )
+            );
+        }, [curStep, curYear, dispatch, location.pathname]
+    );
 
     const clickHandler = () => {
         setActive(!active);
@@ -61,12 +64,12 @@ const Filter = ({ items, active, setActive }) => {
                 }
             );
             sendRequest();
-        }, []
+        }, [sendRequest]
     );
     useEffect(
         () => {
             sendRequest();
-        }, [curYear, curStep]
+        }, [sendRequest]
     );
 
     return (

@@ -30,7 +30,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId }) => {
     useEffect(
         () => { 
             borderColorHandler(placeInFinal)
-        }, []
+        }, [placeInFinal]
     );
 
     const placeHandler = (e) => {

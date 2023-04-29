@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { AUTH_ROUTE } from '../../../consts';
+import { AUTH_ROUTE } from '../../consts';
 
 const MainLogo = ({className}) => {
 

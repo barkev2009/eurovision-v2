@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import styles from './App.module.css';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routes/AppRouter';
 import { useDispatch } from 'react-redux';
 import { check } from './features/user/userAPI';
 import { setIsAuth, setUser } from './features/user/userSlice';
+import HeartLogo from './features/icons/HeartLogo';
 
 function App() {
 
@@ -29,9 +31,7 @@ function App() {
   )
 
   if (loading) {
-    return <div className="spinner-border text-primary" style={{ width: '3rem', height: '3rem' }} role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
+    return <HeartLogo className={styles['heart-animate']} />
   }
 
   return (
