@@ -37,6 +37,7 @@ export const ratingSlice = createSlice({
     builder
       .addCase(
         getRatingsByContest.fulfilled, (state, action) => {
+          // console.table(action.payload);
           state.ratings = action.payload.map(
             item => ({
               id: item.id,

@@ -1256,6 +1256,8 @@ const createCountry = async (countryName) => {
       },
     });
 
+    // console.log(fileName);
+    // console.log(path.resolve(__dirname, '..', 'static', resp.data.icon));
     fs.renameSync(fileName, path.resolve(__dirname, '..', 'static', resp.data.icon));
     log('info', { function: 'utils/createCountry', status: 'success', message: `Country ${countryName} successfully created` });
     return { function: 'utils/createCountry', status: 'success', message: `Country ${countryName} successfully created`, countryId: resp.data.id };
