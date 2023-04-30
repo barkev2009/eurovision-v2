@@ -23,7 +23,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                         document
                             .querySelector('[class*=Rating_entryContainer]')
                             ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100
+                    }, 500
                 );
                 dispatch(
                     getRatingsByContest(
@@ -45,7 +45,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                 document
                     .querySelector('[class*=Rating_entryContainer]')
                     ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100
+            }, 500
         );
     }
 
