@@ -171,11 +171,11 @@ class RatingController {
                 join countries c2 on c."countryId" = c2.id 
                 where r."userId" = '${userId}'
                 and (
-                    lower(c2."name") like '%${q}%'
-                    or lower(c.artist_name) like '%${q}%'
-                    or lower(c.song_name) like '%${q}%'
-                    or lower(c."year"::text) like '%${q}%'
-                    or lower(e.contest_step::text) like '%${q}%'
+                    lower(c2."name") like '%${q.toLowerCase()}%'
+                    or lower(c.artist_name) like '%${q.toLowerCase()}%'
+                    or lower(c.song_name) like '%${q.toLowerCase()}%'
+                    or lower(c."year"::text) like '%${q.toLowerCase()}%'
+                    or lower(e.contest_step::text) like '%${q.toLowerCase()}%'
                 )
                 order by c."year" desc, c2."name", c.song_name, c.artist_name, e.contest_step desc
                 limit 20
