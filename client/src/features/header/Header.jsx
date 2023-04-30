@@ -28,7 +28,8 @@ const Header = () => {
                     id: rating.id,
                     order: rating.entryOrder,
                     href: '/',
-                    search: rating.search
+                    search: rating.search,
+                    year: rating.year
                 })
             ));
         }, [ratings]

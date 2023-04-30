@@ -120,6 +120,7 @@ export const ratingSlice = createSlice({
               contestStep: item.contest_step,
               qualifier: item.qualifier,
               placeInFinal: item.place_in_final,
+              year: item.year,
               search: true
             })
           )

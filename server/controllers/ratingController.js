@@ -155,6 +155,7 @@ class RatingController {
                     c."year" ,
                     c.qualifier ,
                     c.place_in_final ,
+                    c."year" ,
                     c2."name" ,
                     c2.icon ,
                     e.contest_step ,
