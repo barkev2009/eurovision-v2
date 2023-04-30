@@ -47,8 +47,8 @@ p {
 
     .countryNameWrapper {
         overflow-x: scroll;
-        width: 50vw;
-        padding-left: 5vw;
+        width: 60vw;
+        margin-left: 5vw;
         float: left;
         margin-bottom: 2vw;
     }
@@ -58,6 +58,7 @@ p {
         font-size: 6vw;
         text-align: start;
         float: left;
+        width: 80vw;
     }
 
     .tableItemWrapper {

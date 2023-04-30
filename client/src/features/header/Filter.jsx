@@ -56,13 +56,13 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                     setYears(resp.data.map(item => item.year));
                 }
             );
-            $host.get('api/utils/get_steps').then(
+            $host.get('api/utils/get_steps', {params: {year: curYear}}).then(
                 resp => {
                     setSteps(resp.data.map(item => item.contest_step));
                 }
             );
             sendRequest();
-        }, [sendRequest]
+        }, [sendRequest, curYear]
     );
     useEffect(
         () => {

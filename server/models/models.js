@@ -1,7 +1,7 @@
 const sequelize = require('../db');
 const { DataTypes } = require('sequelize');
 const { Sequelize } = require('../db');
-const { FIRST_SEMIFINAL, SECOND_SEMIFINAL, GRAND_FINAL } = require('./enum');
+const { FIRST_SEMIFINAL, SECOND_SEMIFINAL, GRAND_FINAL, SEMIFINAL } = require('./enum');
 
 const User = sequelize.define(
     'user',
@@ -41,7 +41,7 @@ const Entry = sequelize.define(
     {
         id: {type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false, defaultValue: Sequelize.literal('uuid_in((md5((random())::text))::cstring)')},
         entry_order: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0},
-        contest_step: {type: DataTypes.ENUM(FIRST_SEMIFINAL, SECOND_SEMIFINAL, GRAND_FINAL), allowNull: false}
+        contest_step: {type: DataTypes.ENUM(FIRST_SEMIFINAL, SECOND_SEMIFINAL, GRAND_FINAL, SEMIFINAL), allowNull: false}
     }
 )
 

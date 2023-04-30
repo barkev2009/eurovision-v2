@@ -15,7 +15,18 @@ class UtilsController {
 
     async getContestSteps(req, res, next) {
         try {
-            const steps = await sequelize.query(`select distinct c.contest_step from entries c order by c.contest_step`, { type: QueryTypes.SELECT });
+            const { year } = req.query;
+            const steps = await sequelize.query(
+                `
+                select 
+                    distinct e.contest_step 
+                from entries e 
+                join contestants c on e."contestantId" = c.id 
+                where c."year" = ${year}
+                order by e.contest_step
+                `
+                , { type: QueryTypes.SELECT }
+            );
             return res.json(steps);
         } catch (error) {
             return next(ApiError.internalError({ function: 'UtilsController.getContestSteps', message: error.message }))
