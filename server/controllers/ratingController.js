@@ -147,8 +147,8 @@ class RatingController {
             const result = await sequelize.query(
                 `
                 select 
-                    r.id ratingId,
-                    r."userId" ,
+                    r.id id,
+                    r."userId" userId,
                     c.id contestantId,
                     c.artist_name ,
                     c.song_name ,
