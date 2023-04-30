@@ -1,24 +1,24 @@
-CONTEST_STEP,YEAR,ORDER,COUNTRY,ARTIST,SONG,PLACE,,
-Grand Final,2001,1, Netherlands,Michelle,Out on My Own,English,16,18
-Grand Final,2001,2, Iceland,Two Tricky,Angel,English,3,22
-Grand Final,2001,3, Bosnia and Herzegovina,Nino,Hano,"Bosnian, English",29,14
-Grand Final,2001,4, Norway,Haldor Lægreid,On My Own,English,3,22
-Grand Final,2001,5, Israel,Tal Sondak,Ein Davar (אין דבר),Hebrew,25,16
-Grand Final,2001,6, Russia,Mumiy Troll,Lady Alpine Blue,English,37,12
-Grand Final,2001,7, Sweden,Friends,Listen to Your Heartbeat,English,100,5
-Grand Final,2001,8, Lithuania,Skamp,You Got Style,"English, Lithuanian[b]",35,13
-Grand Final,2001,9, Latvia,Arnis Mednis,Too Much,English,16,18
-Grand Final,2001,10, Croatia,Vanna,Strings of My Heart,English,42,10
-Grand Final,2001,11, Portugal,MTM,Só sei ser feliz assim,Portuguese,18,17
-Grand Final,2001,12, Ireland,Gary O'Shaughnessy,Without Your Love,English,6,21
-Grand Final,2001,13, Spain,David Civera,Dile que la quiero,Spanish,76,6
-Grand Final,2001,14, France,Natasha St-Pier,Je n'ai que mon âme,"French, English",142,4
-Grand Final,2001,15, Turkey,Sedat Yüce,Sevgiliye Son,"Turkish, English",41,11
-Grand Final,2001,16, United Kingdom,Lindsay Dracass,No Dream Impossible,English,28,15
-Grand Final,2001,17, Slovenia,Nuša Derenda,Energy,English,70,7
-Grand Final,2001,18, Poland,Piasek,2 Long,English,11,20
-Grand Final,2001,19, Germany,Michelle,Wer Liebe lebt,"German, English",66,8
-Grand Final,2001,20, Estonia,"Tanel Padar, Dave Benton and 2XL",Everybody,English,198,1
-Grand Final,2001,21, Malta,Fabrizio Faniello,Another Summer Night,English,48,9
-Grand Final,2001,22, Greece,Antique,Die for You,"Greek, English",147,3
-Grand Final,2001,23, Denmark,Rollo and King,Never Ever Let You Go,English,177,2
+CONTEST_STEP,YEAR,ORDER,COUNTRY,ARTIST,SONG,PLACE
+Grand Final,2001,1, Netherlands,Michelle,Out on My Own,18
+Grand Final,2001,2, Iceland,Two Tricky,Angel,22
+Grand Final,2001,3, Bosnia and Herzegovina,Nino,Hano,14
+Grand Final,2001,4, Norway,Haldor Lægreid,On My Own,22
+Grand Final,2001,5, Israel,Tal Sondak,Ein Davar (אין דבר),16
+Grand Final,2001,6, Russia,Mumiy Troll,Lady Alpine Blue,12
+Grand Final,2001,7, Sweden,Friends,Listen to Your Heartbeat,5
+Grand Final,2001,8, Lithuania,Skamp,You Got Style,13
+Grand Final,2001,9, Latvia,Arnis Mednis,Too Much,18
+Grand Final,2001,10, Croatia,Vanna,Strings of My Heart,10
+Grand Final,2001,11, Portugal,MTM,Só sei ser feliz assim,17
+Grand Final,2001,12, Ireland,Gary O'Shaughnessy,Without Your Love,21
+Grand Final,2001,13, Spain,David Civera,Dile que la quiero,6
+Grand Final,2001,14, France,Natasha St-Pier,Je n'ai que mon âme,4
+Grand Final,2001,15, Turkey,Sedat Yüce,Sevgiliye Son,11
+Grand Final,2001,16, United Kingdom,Lindsay Dracass,No Dream Impossible,15
+Grand Final,2001,17, Slovenia,Nuša Derenda,Energy,7
+Grand Final,2001,18, Poland,Piasek,2 Long,20
+Grand Final,2001,19, Germany,Michelle,Wer Liebe lebt,8
+Grand Final,2001,20, Estonia,"Tanel Padar, Dave Benton and 2XL",Everybody,1
+Grand Final,2001,21, Malta,Fabrizio Faniello,Another Summer Night,9
+Grand Final,2001,22, Greece,Antique,Die for You,3
+Grand Final,2001,23, Denmark,Rollo and King,Never Ever Let You Go,2
