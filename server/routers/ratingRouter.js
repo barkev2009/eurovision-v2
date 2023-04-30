@@ -9,5 +9,6 @@ router.get('/by_id/:id', ratingController.getById);
 router.get('/by_user/:id', ratingController.getByUser);
 router.get('/by_user_entry', ratingController.getByUserEntry);
 router.get('/by_user_contest', ratingController.getByUserContest);
+router.get('/search', ratingController.search);
 
 module.exports = router;

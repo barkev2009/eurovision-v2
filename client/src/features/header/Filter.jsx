@@ -4,9 +4,8 @@ import { $host } from '../http';
 import { FIRST_SEMIFINAL } from '../../enum';
 import { useDispatch } from 'react-redux';
 import { getRatingsByContest } from '../ratings/ratingsSlice';
-import { useLocation } from 'react-router-dom';
 
-const Filter = ({ active, setActive }) => {
+const Filter = ({ active, setActive, trigger, setTrigger }) => {
 
     const [years, setYears] = useState([]);
     const [steps, setSteps] = useState([]);
@@ -14,34 +13,33 @@ const Filter = ({ active, setActive }) => {
     const [curYear, setCurYear] = useState(2023);
     const [curStep, setCurStep] = useState(FIRST_SEMIFINAL);
 
-    const location = useLocation();
-
     const dispatch = useDispatch();
 
     const sendRequest = useCallback(
         () => {
-            setTimeout(
-                () => {
-                    document
-                        .querySelector('[class*=Rating_entryContainer]')
-                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100
-            );
-            dispatch(
-                getRatingsByContest(
-                    {
-                        userId: location.pathname.split('/')[2],
-                        year: curYear,
-                        contest_step: curStep
-                    }
-                )
-            );
-        }, [curStep, curYear, dispatch, location.pathname]
+            if (trigger) {
+                setTimeout(
+                    () => {
+                        document
+                            .querySelector('[class*=Rating_entryContainer]')
+                            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100
+                );
+                dispatch(
+                    getRatingsByContest(
+                        {
+                            year: curYear,
+                            contest_step: curStep
+                        }
+                    )
+                );
+            }  
+        }, [curStep, curYear, dispatch, trigger]
     );
 
     const clickHandler = () => {
         setActive(!active);
-
+        setTrigger(true);
         setTimeout(
             () => {
                 document
@@ -81,7 +79,7 @@ const Filter = ({ active, setActive }) => {
                     {
                         steps.map(
                             (step, idx) => <div
-                                onClick={() => setCurStep(step)}
+                                onClick={() => {setCurStep(step); setTrigger(true);}}
                                 key={idx}
                                 style={{ borderColor: step === curStep ? 'yellow' : 'white' }}
                                 className={styles.step_content}>
@@ -97,7 +95,7 @@ const Filter = ({ active, setActive }) => {
                             years.map(
                                 (year, idx) => <div
                                     key={idx}
-                                    onClick={() => setCurYear(Number(year))}
+                                    onClick={() => {setCurYear(Number(year)); setTrigger(true);}}
                                     style={{ borderColor: Number(year) === curYear ? 'yellow' : 'white' }}
                                     className={styles.year_content}>
                                     {year}

@@ -19,9 +19,9 @@ const Burger = ({ header, items, active, setActive }) => {
                     <ul>
                         {
                             items && items.map(
-                                item => <li key={item.name} onClick={() => setActive(!active)}>
+                                (item, idx) => <li key={idx} onClick={() => setActive(!active)}>
                                     <img src={item.icon} alt={item.name} />
-                                    <a onClick={clickHandler(item.id)} href={item.href}>{`${item.order}. ${item.name}`}</a>
+                                    <a onClick={clickHandler(item.id)} href={item.href}>{`${item.search ? '' : item.order + '.'} ${item.name}`}</a>
                                 </li>
                             )
                         }

@@ -1,6 +1,9 @@
 const ApiError = require('../error/ApiError');
 const { log } = require('../logs/logger');
 const { Rating, Contestant, Entry, Country } = require('../models/models');
+const jwt = require('jsonwebtoken');
+const sequelize = require('./../db');
+const { QueryTypes } = require('sequelize');
 
 class RatingController {
     async create(req, res, next) {
@@ -93,7 +96,12 @@ class RatingController {
 
     async getByUserContest(req, res, next) {
         try {
-            const { userId, year, contest_step } = req.query;
+            const { year, contest_step } = req.query;
+            const user = jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET_KEY);
+            if (!user) {
+                return next(ApiError.internalError({ function: 'RatingController.search', message: 'Пользователь не найден' }))
+            }
+            const userId = user.id;
 
             const result = await Rating.findAll(
                 {
@@ -124,6 +132,59 @@ class RatingController {
             return res.json(result);
         } catch (error) {
             return next(ApiError.internalError({ function: 'RatingController.getByUserContest', message: error.message }))
+        }
+    }
+
+    async search(req, res, next) {
+        try {
+            const { q } = req.query;
+            const user = jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET_KEY);
+            if (!user) {
+                return next(ApiError.internalError({ function: 'RatingController.search', message: 'Пользователь не найден' }))
+            }
+            const userId = user.id;
+
+            const result = await sequelize.query(
+                `
+                select 
+                    r.id ratingId,
+                    r."userId" ,
+                    c.id contestantId,
+                    c.artist_name ,
+                    c.song_name ,
+                    c."year" ,
+                    c.qualifier ,
+                    c.place_in_final ,
+                    c2."name" ,
+                    c2.icon ,
+                    e.contest_step ,
+                    e.entry_order ,
+                    r.purity,
+                    r."show" ,
+                    r.difficulty ,
+                    r.originality ,
+                    r.sympathy ,
+                    r.score 
+                from ratings r
+                join entries e on r."entryId" = e.id 
+                join contestants c on e."contestantId" = c.id 
+                join countries c2 on c."countryId" = c2.id 
+                where r."userId" = '${userId}'
+                and (
+                    lower(c2."name") like '%${q}%'
+                    or lower(c.artist_name) like '%${q}%'
+                    or lower(c.song_name) like '%${q}%'
+                    or lower(c."year"::text) like '%${q}%'
+                    or lower(e.contest_step::text) like '%${q}%'
+                )
+                order by c."year" desc, c2."name", c.song_name, c.artist_name, e.contest_step desc
+                limit 20
+            `,
+                { type: QueryTypes.SELECT });
+
+            return res.json(result);
+        } catch (error) {
+            return next(ApiError.internalError({ function: 'RatingController.search', message: error.message }))
         }
     }
 }

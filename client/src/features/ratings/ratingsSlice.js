@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { editPlaceAPI, editQualifierAPI, editRatingAPI, getRatingsByContestAPI } from './ratingAPI';
+import { editPlaceAPI, editQualifierAPI, editRatingAPI, getRatingsByContestAPI, searchAPI } from './ratingAPI';
 
 const initialState = {
   ratings: []
@@ -8,6 +8,11 @@ const initialState = {
 export const getRatingsByContest = createAsyncThunk(
   'ratings/getRatingsByContest',
   getRatingsByContestAPI
+)
+
+export const search = createAsyncThunk(
+  'ratings/search',
+  searchAPI
 )
 
 export const editRating = createAsyncThunk(
@@ -56,7 +61,8 @@ export const ratingSlice = createSlice({
               entryOrder: item.entry.entry_order,
               contestStep: item.entry.contest_step,
               qualifier: item.entry.contestant.qualifier,
-              placeInFinal: item.entry.contestant.place_in_final
+              placeInFinal: item.entry.contestant.place_in_final,
+              search: false
             })
           );
         }
@@ -90,6 +96,33 @@ export const ratingSlice = createSlice({
             const rating = state.ratings.filter(item => item.contestantId === action.payload.contestant.id)[0];
             rating.placeInFinal = action.payload.contestant.place_in_final;
           }
+        }
+      )
+      .addCase(
+        search.fulfilled, (state, action) => {
+          // console.log(action.payload)
+          state.ratings = action.payload.map(
+            item => ({
+              id: item.id,
+              userId: item.userid,
+              contestantId: item.contestantid,
+              purity: item.purity,
+              difficulty: item.difficulty,
+              show: item.show,
+              originality: item.originality,
+              sympathy: item.sympathy,
+              score: item.score,
+              countryName: item.name,
+              iconPath: process.env.REACT_APP_API_URL + '/' + item.icon,
+              artistName: item.artist_name,
+              songName: item.song_name,
+              entryOrder: item.entry_order,
+              contestStep: item.contest_step,
+              qualifier: item.qualifier,
+              placeInFinal: item.place_in_final,
+              search: true
+            })
+          )
         }
       )
   }

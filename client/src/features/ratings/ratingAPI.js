@@ -1,9 +1,14 @@
 import { $authHost } from "../http";
 
 
-export const getRatingsByContestAPI = async ({ userId, year, contest_step }) => {
-    const { data } = await $authHost.get('api/rating/by_user_contest', { params: { userId, year, contest_step } });
+export const getRatingsByContestAPI = async ({ year, contest_step }) => {
+    const { data } = await $authHost.get('api/rating/by_user_contest', { params: { year, contest_step } });
     // console.log(data.map(item => item.entry.contestant.country));
+    return data;
+}
+
+export const searchAPI = async ({ q }) => {
+    const { data } = await $authHost.get('api/rating/search', { params: { q } });
     return data;
 }
 

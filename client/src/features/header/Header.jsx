@@ -7,6 +7,7 @@ import AdminLogo from '../icons/AdminLogo';
 import { useSelector } from 'react-redux';
 import Burger from './Burger';
 import Filter from './Filter';
+import Search from './Search';
 
 const Header = () => {
 
@@ -14,6 +15,7 @@ const Header = () => {
 
     const [active, setActive] = useState(false);
     const [filterActive, setFilterActive] = useState(false);
+    const [trigger, setTrigger] = useState(true);
     const ratings = useSelector(state => state.ratings.ratings);
     const [countryItems, setCountryItems] = useState([]);
 
@@ -25,7 +27,8 @@ const Header = () => {
                     icon: rating.iconPath,
                     id: rating.id,
                     order: rating.entryOrder,
-                    href: '/'
+                    href: '/',
+                    search: rating.search
                 })
             ));
         }, [ratings]
@@ -36,10 +39,11 @@ const Header = () => {
             <MainLogo className={styles.mainLogo} />
             <div className={styles.headerBtnContainer}>
                 <FilterLogo className={styles.filterLogo} active={filterActive} setActive={setFilterActive} />
+                <Search setTrigger={setTrigger} trigger={trigger} />
                 {isAdmin && <AdminLogo className={styles.adminLogo} />}
                 <div onClick={() => setActive(!active)} className={burgerStyles['burger-btn']}><span /></div>
                 <Burger header={'Участники'} items={countryItems} active={active} setActive={setActive} />
-                <Filter active={filterActive} setActive={setFilterActive} />
+                <Filter active={filterActive} setActive={setFilterActive} trigger={trigger} setTrigger={setTrigger} />
             </div>
         </header>
     )

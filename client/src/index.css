@@ -19,6 +19,19 @@ body {
 
 }
 
+input::-webkit-input-placeholder {
+  font-family: 'Andika', sans-serif;
+}
+input:-ms-input-placeholder {
+  font-family: 'Andika', sans-serif;
+}
+input:-moz-placeholder {
+  font-family: 'Andika', sans-serif;
+}
+input::-moz-placeholder {
+  font-family: 'Andika', sans-serif;
+}
+
 @media (max-width: 600px) {
   body {
     height: 100vh;
