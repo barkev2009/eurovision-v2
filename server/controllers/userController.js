@@ -6,9 +6,9 @@ const { log } = require('../logs/logger');
 
 const generateJWT = (id, name, login, role) => {
     let expiresIn = '24h';
-    if (role === 'ADMIN') {
-        expiresIn = '1h';
-    }
+    // if (role === 'ADMIN') {
+    //     expiresIn = '1h';
+    // }
     return jwt.sign(
         {
             id,
