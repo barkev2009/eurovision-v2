@@ -27,6 +27,8 @@ const Header = () => {
                     icon: rating.iconPath,
                     id: rating.id,
                     order: rating.entryOrder,
+                    step: rating.contestStep,
+                    qualifier: rating.qualifier,
                     href: '/',
                     search: rating.search,
                     year: rating.year

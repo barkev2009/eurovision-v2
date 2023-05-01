@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Burger.module.css';
+import { GRAND_FINAL } from '../../enum';
+import HeartLogo from './../icons/HeartLogo';
 
 const Burger = ({ header, items, active, setActive }) => {
 
@@ -21,7 +23,11 @@ const Burger = ({ header, items, active, setActive }) => {
                             items && items.map(
                                 (item, idx) => <li key={idx} onClick={() => setActive(!active)}>
                                     <img src={item.icon} alt={item.name} />
-                                    <a onClick={clickHandler(item.id)} href={item.href}>{`${item.search ? '' : item.order + '.'} ${item.name} ${item.search ? `(${item.year})` : ''}`}</a>
+                                    <a onClick={clickHandler(item.id)} href={item.href}>
+                                        {`${item.search ? '' : item.order + '.'} ${item.name} ${item.search ? `(${item.year})` : ''}`}
+                                        
+                                    </a>
+                                    {item.step !== GRAND_FINAL && item.qualifier && <HeartLogo className={styles.heart_burger} fill={'rgb(0, 106, 0)'} />}
                                 </li>
                             )
                         }

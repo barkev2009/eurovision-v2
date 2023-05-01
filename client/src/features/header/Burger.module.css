@@ -92,6 +92,7 @@ ul li {
     margin: 0.3vw;
     text-align: start;
     list-style-type: none;
+    position: relative;
 }
 
 ul li a {
@@ -156,6 +157,7 @@ ul li a {
 
     ul li a {
         margin: 5vw;
+        padding-right: 2vw;
     }
 
     .filter__header {
@@ -214,5 +216,12 @@ ul li a {
         align-items: center;
         justify-content: center;
         font-size: 6vw;
+    }
+
+    .heart_burger {
+        width: 5vw;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }
