@@ -24,7 +24,7 @@ const Qualifier = ({ qualifier, contestantId }) => {
     }
 
     return (
-        <div style={{ borderColor: userRole === 'ADMIN' ? (isQualified ? '#006a00' : '#6a0000') : 'white' }} className={styles.qualifier} onClick={qualifierHandler}>{isQualified ? 'Финалист' : 'Не прошел в финал'}</div>
+        <div style={{ borderColor: userRole === 'ADMIN' ? (isQualified ? '#006a00' : '#6a0000') : 'white' }} className={styles.qualifier} onClick={qualifierHandler}>{isQualified ? 'Qualified for the Final' : 'Non-qualified'}</div>
     )
 }
 
