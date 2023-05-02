@@ -10,7 +10,7 @@ const RatingContainer = ({ entryData }) => {
         },
         {
             name: 'show',
-            value: 'Шоу, задумка'
+            value: 'Реализация шоу'
         },
         {
             name: 'difficulty',
