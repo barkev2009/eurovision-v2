@@ -25,6 +25,20 @@ p {
 }
 
 
+.transferBtn {
+    float: right;
+    color: white;
+    padding: 5vw;
+    /* padding-left: 1vw; */
+    position: relative;
+    margin: auto;
+    font-size: 5vw;
+    text-align: center;
+    border: 2px solid white;
+    margin-top: 10vw;
+}
+
+
 @media (max-width: 600px) {
     .mainContainer {
         margin-top: 0vw;
@@ -116,8 +130,9 @@ p {
         color: white;
         float: left;
         padding: 5vw;
-        padding-left: 30vw;
-        width: 80vw;
+        padding-left: 10vw;
+        padding-right: 10vw;
+        /* width: 80vw; */
         position: relative;
         margin: auto;
         font-size: 5vw;
@@ -133,7 +148,7 @@ p {
         font-size: 7vw;
     }
 
-    .placeValue + div {
+    .placeValue+div {
         width: fit-content;
         display: inline;
         float: left;

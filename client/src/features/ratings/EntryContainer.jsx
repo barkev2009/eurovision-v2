@@ -34,7 +34,7 @@ const EntryContainer = ({ entryData }) => {
             <RatingContainer entryData={entryData} />
 
             {
-                entryData.contestStep === GRAND_FINAL ? <PlaceInFinal placeInFinal={entryData.placeInFinal} contestantId={entryData.contestantId} /> : <Qualifier qualifier={entryData.qualifier} contestantId={entryData.contestantId} />
+                entryData.contestStep === GRAND_FINAL ? <PlaceInFinal placeInFinal={entryData.placeInFinal} contestantId={entryData.contestantId} ratingId={entryData.id} /> : <Qualifier qualifier={entryData.qualifier} contestantId={entryData.contestantId} />
             }
         </div>
 

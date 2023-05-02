@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Rating.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPlace } from './ratingsSlice';
+import { editPlace, transfer } from './ratingsSlice';
 
-const PlaceInFinal = ({ placeInFinal, contestantId }) => {
+const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
     const [place, setPlace] = useState(placeInFinal);
     const [borderColor, setBorderColor] = useState('gray');
@@ -28,7 +28,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId }) => {
     }
 
     useEffect(
-        () => { 
+        () => {
             borderColorHandler(placeInFinal)
         }, [placeInFinal]
     );
@@ -48,11 +48,25 @@ const PlaceInFinal = ({ placeInFinal, contestantId }) => {
         }
     }
 
+    const transferHandler = () => {
+        dispatch(
+            transfer(
+                {
+                    id: ratingId
+                }
+            )
+        )
+    }
+
     return (
-        <div className={styles.placeInFinal} style={{borderColor}}>
-            <input className={styles.placeValue} type="number" value={place} onChange={placeHandler} />
-            <div>место</div>
+        <div>
+            <div className={styles.placeInFinal} style={{ borderColor }}>
+                <input className={styles.placeValue} type="number" value={place} onChange={placeHandler} />
+                <div>место</div>
+            </div>
+            <div className={styles.transferBtn} onClick={transferHandler}>Transfer</div>
         </div>
+
     )
 }
 

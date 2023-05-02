@@ -4,6 +4,7 @@ const { Rating, Contestant, Entry, Country } = require('../models/models');
 const jwt = require('jsonwebtoken');
 const sequelize = require('./../db');
 const { QueryTypes } = require('sequelize');
+const { GRAND_FINAL } = require('../models/enum');
 
 class RatingController {
     async create(req, res, next) {
@@ -186,6 +187,47 @@ class RatingController {
             return res.json(result);
         } catch (error) {
             return next(ApiError.internalError({ function: 'RatingController.search', message: error.message }))
+        }
+    }
+
+    async transferToFinal(req, res, next) {
+        try {
+            const { id } = req.params;
+            const rating = await Rating.findOne({ where: { id } });
+            if (!rating) {
+                return next(ApiError.internalError({ function: 'RatingController.transferToFinal', message: `Рейтинг с id=${id} не найден` }))
+            }
+            const entry = await Entry.findOne({ where: { id: rating.entryId } });
+            const result = await sequelize.query(
+                `
+                select 
+                    r.id 
+                from ratings r
+                join entries e on r."entryId" = e.id 
+                join contestants c on e."contestantId" = c.id
+                where r."userId" = '${rating.userId}'
+                and c.id = '${entry.contestantId}'
+                and e.contest_step != '${GRAND_FINAL}'
+            `,
+                { type: QueryTypes.SELECT }
+            );
+            const prevRating = await Rating.findOne({ where: { id: result[0].id } });
+            const output = await Rating.update(
+                {
+                    show: prevRating.show,
+                    difficulty: prevRating.difficulty,
+                    originality: prevRating.originality,
+                    sympathy: prevRating.sympathy,
+                    score: rating.purity + prevRating.show + prevRating.difficulty + prevRating.originality + prevRating.sympathy
+                },
+                { where: { id: rating.id } }
+            );
+
+            const newRating = await Rating.findOne({ where: { id: rating.id } });
+            log('info', { message: 'TRANSFER', result: { rating: newRating, output } });
+            return res.json({ rating: newRating, result: output });
+        } catch (error) {
+            return next(ApiError.internalError({ function: 'RatingController.transferToFinal', message: error.message }))
         }
     }
 }

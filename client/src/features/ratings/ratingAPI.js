@@ -26,3 +26,8 @@ export const editPlaceAPI = async ({ id, place_in_final }) => {
     const { data } = await $authHost.put('api/contestant/' + id, { place_in_final });
     return data;
 }
+
+export const transferAPI = async ({ id }) => {
+    const { data } = await $authHost.put('api/rating/transfer/' + id);
+    return data;
+}

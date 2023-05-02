@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StarIcon from './StarIcon';
 import styles from './Star.module.css';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,12 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
     const [starValue, setStarValue] = useState(entryData[ratingName]);
     const dispatch = useDispatch();
     const STEP_VALUE = 0.05;
+
+    useEffect(
+        () => {
+            setStarValue(entryData[ratingName]);
+        }, [entryData, ratingName]
+    );
 
     const setValue = (value) => {
         setStarValue(value);
