@@ -53,14 +53,46 @@ input {
     color: white;
     background-color: transparent;
     border: none;
-    width: 45vw;
+    width: 15vw;
     display: block;
-    padding-left: 25vw;
     padding-top: 1vw;
 }
 
 input:focus {
     outline: none;
+}
+
+.value_container {
+    display: flex;
+    flex-direction: row;
+    padding-left: 25vw;
+}
+
+.dec_arrow {
+    transform: rotate(180deg);
+    width: 10vw;
+    position: relative;
+    margin-top: 1vw;
+}
+
+.inc_arrow {
+    width: 10vw;  
+    position: relative;
+    margin-top: 1vw;
+}
+
+.dec_arrow svg {
+    bottom: 0;
+}
+
+.dec_arrow svg, .inc_arrow svg {
+    position: absolute;
+    right: 0;
+    height: 5vw;
+}
+
+.value_input {
+    text-align: center;
 }
 
 @media screen and (min-width: 600px) {
