@@ -33,9 +33,7 @@ const Arrow = ({ className, action, onClick }) => {
         setMouseDown(false);        
     }
     const clickHandler = () => {
-        if (onClick) {
-            action()
-        }
+        action()
     }
 
     return (
