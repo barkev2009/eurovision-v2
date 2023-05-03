@@ -180,7 +180,7 @@ class RatingController {
                     or lower(e.contest_step::text) like '%${q.toLowerCase()}%'
                 )
                 order by c2."name", c."year" desc, c.song_name, c.artist_name, e.contest_step desc
-                limit 100
+                limit 20
             `,
                 { type: QueryTypes.SELECT });
 
