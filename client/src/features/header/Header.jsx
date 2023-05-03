@@ -45,7 +45,7 @@ const Header = () => {
                 <Search setTrigger={setTrigger} trigger={trigger} />
                 {isAdmin && <AdminLogo className={styles.adminLogo} />}
                 <div onClick={() => setActive(!active)} className={burgerStyles['burger-btn']}><span /></div>
-                <Burger header={'Участники'} items={countryItems} active={active} setActive={setActive} />
+                <Burger header={'Participants'} items={countryItems} active={active} setActive={setActive} />
                 <Filter active={filterActive} setActive={setFilterActive} trigger={trigger} setTrigger={setTrigger} />
             </div>
         </header>

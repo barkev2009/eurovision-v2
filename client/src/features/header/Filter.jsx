@@ -88,7 +88,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
         <div className={active ? `${styles.menu} ${styles.active}` : styles.menu}>
             <div onClick={() => setActive(!active)} className={styles.blur}></div>
             <div className={styles.menu__content}>
-                <div className={styles.filter__header}>Этапы конкурса</div>
+                <div className={styles.filter__header}>Contest steps</div>
                 <div className={styles.steps_container}>
                     {
                         steps.map(
@@ -102,7 +102,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                         )
                     }
                 </div>
-                <div className={styles.filter__header}>Годы</div>
+                <div className={styles.filter__header}>Years</div>
                 <div className={styles.year_wrapper}>
                     <div className={styles.years_container}>
                         {
@@ -118,7 +118,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                         }
                     </div>
                 </div>
-                <div onClick={clickHandler} className={styles.apply_btn}>Применить</div>
+                <div onClick={clickHandler} className={styles.apply_btn}>Apply</div>
             </div>
         </div>
     )

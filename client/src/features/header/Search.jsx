@@ -37,7 +37,7 @@ const Search = ({ setTrigger, trigger }) => {
 
     return (
         <div className={styles.search}>
-            <input type="text" placeholder='Поиск' value={q} onChange={searchHandler} />
+            <input type="text" placeholder='Search' value={q} onChange={searchHandler} />
         </div>
     )
 }

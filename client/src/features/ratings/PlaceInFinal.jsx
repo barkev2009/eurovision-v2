@@ -90,7 +90,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
         <div>
             <div className={styles.placeInFinal} style={{ borderColor }}>
                 <input className={styles.placeValue} type="number" value={place} disabled={userRole !== 'ADMIN'} onChange={placeHandler} />
-                <div>место</div>
+                <div>place</div>
             </div>
             <div className={styles.transferBtn} onClick={transferHandler}>Transfer</div>
         </div>

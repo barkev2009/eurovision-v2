@@ -6,23 +6,23 @@ const RatingContainer = ({ entryData }) => {
     const ratingMapper = [
         {
             name: 'purity',
-            value: 'Чистота исполнения'
+            value: 'Singing purity'
         },
         {
             name: 'show',
-            value: 'Реализация шоу'
+            value: 'Show realization'
         },
         {
             name: 'difficulty',
-            value: 'Сложность песни'
+            value: 'Song difficulty'
         },
         {
             name: 'originality',
-            value: 'Захват внимания'
+            value: 'Attention capture'
         },
         {
             name: 'sympathy',
-            value: 'Личная симпатия'
+            value: 'Personal sympathy'
         }
     ]
 
