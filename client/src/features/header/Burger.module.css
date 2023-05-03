@@ -178,6 +178,8 @@ ul li a {
         margin: 2vw;
         font-size: 4vw;
         transition: all 0.1s;
+        display: flex;
+        align-items: center;
     }
 
     .year_wrapper {

@@ -8,7 +8,7 @@ import { getRatingsByContest, sortRatings } from '../ratings/ratingsSlice';
 const ORDER = 'Entry order';
 const SCORE = 'Overall score';
 const PLACE = 'Place in final';
-const QUALIFIED = 'Qualification';
+const QUALIFIED = 'Qualified';
 const initialSortMethods = [
     {
         name: ORDER,
