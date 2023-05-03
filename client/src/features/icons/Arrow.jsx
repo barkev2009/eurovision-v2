@@ -1,11 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-const Arrow = ({ className, action }) => {
+const Arrow = ({ className, action, onClick }) => {
 
     const [fill, setFill] = useState('white');
+    const [isMouseDown, setMouseDown] = useState(false);
+
+    function useInterval(callback, delay) {
+        const savedCallback = useRef();
+
+        useEffect(() => {
+            savedCallback.current = callback;
+        }, [callback]);
+
+        useEffect(() => {
+            function tick() {
+                savedCallback.current();
+            }
+            if (delay !== null) {
+                let id = setInterval(tick, delay);
+                return () => clearInterval(id);
+            }
+        }, [delay]);
+    }
+    useInterval(action, isMouseDown && !onClick ? 300 : null);
+
+    const mouseDownHandler = () => {
+        setFill('yellow');
+        setMouseDown(true);
+    }
+    const mouseUpHandler = () => {
+        setFill('white');
+        setMouseDown(false);        
+    }
+    const clickHandler = () => {
+        if (onClick) {
+            action()
+        }
+    }
 
     return (
-        <div className={className} onClick={action} onMouseDown={() => setFill('yellow')} onMouseUp={() => setFill('white')}>
+        <div className={className} onClick={clickHandler} onTouchStart={mouseDownHandler} onTouchEnd={mouseUpHandler} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler}>
             <svg viewBox="-4.5 0 20 20" >
                 <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                     <g id="Dribbble-Light-Preview" transform="translate(-305.000000, -6679.000000)" fill={fill}>

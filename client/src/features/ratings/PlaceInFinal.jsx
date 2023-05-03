@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Rating.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPlace, editPlaceLocal, transfer } from './ratingsSlice';
 import io from 'socket.io-client';
+import Arrow from '../icons/Arrow';
 
 const socket = io.connect(process.env.REACT_APP_API_URL);
 const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
-    const [place, setPlace] = useState(placeInFinal);
+    let interval;
     const [borderColor, setBorderColor] = useState('gray');
     const userRole = useSelector(state => state.user.user.role);
     const dispatch = useDispatch();
@@ -35,33 +36,11 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
         }, [placeInFinal]
     );
 
-    const placeHandler = (e) => {
-        if (userRole === 'ADMIN') {
-            setPlace(e.target.value);
-            dispatch(
-                editPlace(
-                    {
-                        id: contestantId,
-                        place_in_final: Number(e.target.value)
-                    }
-                )
-            );
-            socket.emit(
-                'sendEditPlace', {
-                id: contestantId,
-                place_in_final: Number(e.target.value)
-            }
-            );
-            borderColorHandler(Number(e.target.value));
-        }
-    }
-
     useEffect(
         () => {
             socket.on(
                 'receiveEditPlace', ({ id, place_in_final }) => {
                     if (contestantId === id) {
-                        setPlace(place_in_final);
                         dispatch(
                             editPlaceLocal(
                                 {
@@ -86,11 +65,54 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
         )
     }
 
+    const incrementStart = () => {
+        const place_in_final = placeInFinal + 1;
+        dispatch(
+            editPlace(
+                {
+                    id: contestantId,
+                    place_in_final
+                }
+            )
+        );
+        socket.emit(
+            'sendEditPlace', {
+            id: contestantId,
+            place_in_final
+        }
+        );
+    }
+    const decrementStart = () => {
+        const place_in_final = placeInFinal - 1;
+        dispatch(
+            editPlace(
+                {
+                    id: contestantId,
+                    place_in_final
+                }
+            )
+        );
+        socket.emit(
+            'sendEditPlace', {
+            id: contestantId,
+            place_in_final
+        }
+        );
+    }
+
+    const style = {
+        borderColor,
+        paddingLeft: userRole === 'ADMIN' ? '5vw' : '10vw',
+        paddingRight: userRole === 'ADMIN' ? '15vw' : '10vw',
+    }
+
     return (
         <div>
-            <div className={styles.placeInFinal} style={{ borderColor }}>
-                <input className={styles.placeValue} type="number" value={place} disabled={userRole !== 'ADMIN'} onChange={placeHandler} />
+            <div className={styles.placeInFinal} style={style}>
+                <input className={styles.placeValue} type="number" value={placeInFinal} disabled/>
                 <div>place</div>
+                {userRole === 'ADMIN' && <Arrow className={styles.incArrow} action={incrementStart} />}
+                {userRole ==='ADMIN' && <Arrow className={styles.decArrow} action={decrementStart} />}
             </div>
             <div className={styles.transferBtn} onClick={transferHandler}>Transfer</div>
         </div>

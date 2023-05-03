@@ -38,6 +38,21 @@ p {
     margin-top: 10vw;
 }
 
+.incArrow {
+    transform: rotate(-90deg);
+    position: absolute;
+    width: 6vw;
+    top: 0;
+    right: 1vw;
+}
+
+.decArrow {
+    transform: rotate(90deg);
+    position: absolute;
+    width: 6vw;
+    bottom: 0;
+    right: 3vw;
+}
 
 @media (max-width: 600px) {
     .mainContainer {
@@ -130,8 +145,8 @@ p {
         color: white;
         float: left;
         padding: 5vw;
-        padding-left: 10vw;
-        padding-right: 10vw;
+        padding-left: 5vw;
+        padding-right: 15vw;
         /* width: 80vw; */
         position: relative;
         margin: auto;

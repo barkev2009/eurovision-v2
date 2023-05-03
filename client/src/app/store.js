@@ -9,4 +9,10 @@ export const store = configureStore({
     user: userReducer,
     ratings: ratingReducer
   },
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['ratings/sortRatings']
+      }
+    })
 });
