@@ -1,19 +1,38 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Burger.module.css';
 import { $host } from '../http';
-import { FIRST_SEMIFINAL } from '../../enum';
-import { useDispatch } from 'react-redux';
-import { getRatingsByContest } from '../ratings/ratingsSlice';
+import { FIRST_SEMIFINAL, GRAND_FINAL } from '../../enum';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRatingsByContest, sortRatings } from '../ratings/ratingsSlice';
+
+const ORDER = 'Entry order';
+const SCORE = 'Overall score';
+const PLACE = 'Place in final';
+const QUALIFIED = 'Qualification';
+const initialSortMethods = [
+    {
+        name: ORDER,
+        sortMethod: (a, b) => a.entryOrder - b.entryOrder
+    },
+    {
+        name: SCORE,
+        sortMethod: (a, b) => b.score - a.score
+    }
+]
 
 const Filter = ({ active, setActive, trigger, setTrigger }) => {
 
     const [years, setYears] = useState([]);
     const [steps, setSteps] = useState([]);
+    const [sortMethods, setSortMethods] = useState(initialSortMethods);
 
     const [curYear, setCurYear] = useState(Number(localStorage.getItem('curYear')) || 2023);
     const [curStep, setCurStep] = useState(localStorage.getItem('curStep') || FIRST_SEMIFINAL);
+    const [curSort, setCurSort] = useState(localStorage.getItem('curSort') || ORDER);
+
 
     const dispatch = useDispatch();
+    const ratings = useSelector(state => state.ratings.ratings);
 
     const sendRequest = useCallback(
         () => {
@@ -33,7 +52,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                         }
                     )
                 );
-            }  
+            }
         }, [curStep, curYear, dispatch, trigger]
     );
 
@@ -57,9 +76,21 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
     }
     const curStepHandler = (step) => {
         return () => {
-            setCurStep(step); 
-            setTrigger(true); 
+            setCurStep(step);
+            setTrigger(true);
             localStorage.setItem('curStep', step)
+        }
+    }
+    const curSortHandler = (sort) => {
+        return () => {
+            dispatch(
+                sortRatings(
+                    sortMethods.filter(item => item.name === sort)[0].sortMethod
+                )
+            )
+            setCurSort(sort);
+            setTrigger(true);
+            localStorage.setItem('curSort', sort);
         }
     }
 
@@ -70,7 +101,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                     setYears(resp.data.map(item => item.year));
                 }
             );
-            $host.get('api/utils/get_steps', {params: {year: curYear}}).then(
+            $host.get('api/utils/get_steps', { params: { year: curYear } }).then(
                 resp => {
                     setSteps(resp.data.map(item => item.contest_step));
                 }
@@ -82,6 +113,41 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
         () => {
             sendRequest();
         }, [sendRequest]
+    );
+    useEffect(
+        () => {
+            if (ratings.length !== 0) {
+                dispatch(
+                    sortRatings(
+                        sortMethods.filter(item => item.name === curSort)[0].sortMethod
+                    )
+                )
+            }
+        }, [ratings]
+    );
+    useEffect(
+        () => {
+            setSortMethods(
+                [
+                    ...initialSortMethods,
+                    curStep === GRAND_FINAL ?
+                    {
+                        name: PLACE, sortMethod: (a, b) => a.placeInFinal - b.placeInFinal
+                    } :
+                    {
+                        name: QUALIFIED, sortMethod: (a, b) => b.qualifier - a.qualifier
+                    }
+                ]
+            );
+
+            if (curStep === GRAND_FINAL && curSort === QUALIFIED) {
+                    setCurSort(PLACE);
+                    localStorage.setItem('curSort', PLACE);
+            } else if (curStep !== GRAND_FINAL && curSort === PLACE) {
+                    setCurSort(QUALIFIED);
+                    localStorage.setItem('curSort', QUALIFIED);
+            }
+        }, [curStep]
     );
 
     return (
@@ -117,6 +183,20 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                             )
                         }
                     </div>
+                </div>
+                <div className={styles.filter__header}>Sort by</div>
+                <div className={styles.steps_container}>
+                    {
+                        sortMethods.map(
+                            (item, idx) => <div
+                                onClick={curSortHandler(item.name)}
+                                key={idx}
+                                style={{ borderColor: item.name === curSort ? 'yellow' : 'white' }}
+                                className={styles.step_content}>
+                                {item.name}
+                            </div>
+                        )
+                    }
                 </div>
                 <div onClick={clickHandler} className={styles.apply_btn}>Apply</div>
             </div>

@@ -46,6 +46,9 @@ export const ratingSlice = createSlice({
     editPlaceLocal: (state, action) => {
       const rating = state.ratings.filter(item => item.contestantId === action.payload.id)[0];
       rating.placeInFinal = action.payload.place_in_final;
+    },
+    sortRatings: (state, action) => {
+      state.ratings = state.ratings.sort(action.payload);
     }
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -155,6 +158,6 @@ export const ratingSlice = createSlice({
   }
 });
 
-export const { editQualifierLocal, editPlaceLocal } = ratingSlice.actions;
+export const { editQualifierLocal, editPlaceLocal, sortRatings } = ratingSlice.actions;
 
 export default ratingSlice.reducer;
