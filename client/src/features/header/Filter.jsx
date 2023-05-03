@@ -10,8 +10,8 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
     const [years, setYears] = useState([]);
     const [steps, setSteps] = useState([]);
 
-    const [curYear, setCurYear] = useState(2023);
-    const [curStep, setCurStep] = useState(FIRST_SEMIFINAL);
+    const [curYear, setCurYear] = useState(Number(localStorage.getItem('curYear')) || 2023);
+    const [curStep, setCurStep] = useState(localStorage.getItem('curStep') || FIRST_SEMIFINAL);
 
     const dispatch = useDispatch();
 
@@ -48,6 +48,20 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
             }, 500
         );
     }
+    const curYearHandler = (year) => {
+        return () => {
+            setTrigger(true);
+            setCurYear(year);
+            localStorage.setItem('curYear', year);
+        }
+    }
+    const curStepHandler = (step) => {
+        return () => {
+            setCurStep(step); 
+            setTrigger(true); 
+            localStorage.setItem('curStep', step)
+        }
+    }
 
     useEffect(
         () => {
@@ -79,7 +93,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                     {
                         steps.map(
                             (step, idx) => <div
-                                onClick={() => {setCurStep(step); setTrigger(true);}}
+                                onClick={curStepHandler(step)}
                                 key={idx}
                                 style={{ borderColor: step === curStep ? 'yellow' : 'white' }}
                                 className={styles.step_content}>
@@ -95,7 +109,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                             years.map(
                                 (year, idx) => <div
                                     key={idx}
-                                    onClick={() => {setCurYear(Number(year)); setTrigger(true);}}
+                                    onClick={curYearHandler(Number(year))}
                                     style={{ borderColor: Number(year) === curYear ? 'yellow' : 'white' }}
                                     className={styles.year_content}>
                                     {year}
