@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Rating.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { editPlace, transfer } from './ratingsSlice';
+import { editPlace, editPlaceLocal, transfer } from './ratingsSlice';
+import io from 'socket.io-client';
 
+const socket = io.connect(process.env.REACT_APP_API_URL);
 const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
     const [place, setPlace] = useState(placeInFinal);
@@ -44,9 +46,35 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
                     }
                 )
             );
+            socket.emit(
+                'sendEditPlace', {
+                id: contestantId,
+                place_in_final: Number(e.target.value)
+            }
+            );
             borderColorHandler(Number(e.target.value));
         }
     }
+
+    useEffect(
+        () => {
+            socket.on(
+                'receiveEditPlace', ({ id, place_in_final }) => {
+                    if (contestantId === id) {
+                        setPlace(place_in_final);
+                        dispatch(
+                            editPlaceLocal(
+                                {
+                                    id,
+                                    place_in_final
+                                }
+                            )
+                        )
+                    }
+                }
+            );
+        }, [socket]
+    );
 
     const transferHandler = () => {
         dispatch(
@@ -61,7 +89,7 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
     return (
         <div>
             <div className={styles.placeInFinal} style={{ borderColor }}>
-                <input className={styles.placeValue} type="number" value={place} onChange={placeHandler} />
+                <input className={styles.placeValue} type="number" value={place} disabled={userRole !== 'ADMIN'} onChange={placeHandler} />
                 <div>место</div>
             </div>
             <div className={styles.transferBtn} onClick={transferHandler}>Transfer</div>

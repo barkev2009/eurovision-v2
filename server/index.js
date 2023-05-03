@@ -7,6 +7,8 @@ const path = require('path');
 const router = require('./routers/index');
 const fileUpload = require('express-fileupload');
 const errorHandler = require('./middleware/ErrorHandlerMiddleware');
+const { Server } = require('socket.io');
+const http = require('http');
 
 const PORT = process.env.PORT || 5002;
 
@@ -31,11 +33,44 @@ app.get(
     }
 )
 
+const server = http.createServer(app);
+
+const io = new Server(
+    server, {
+        cors: {
+            origin: process.env.CLIENT_URL,
+            methods: ['GET', 'POST', 'PUT', 'DELETE']
+        }
+    }
+)
+
+io.on(
+    'connection', (socket) => {
+        socket.on(
+            'sendEditQualifier', data => {
+                socket.broadcast.emit(
+                    'receiveEditQualifier', data
+                )
+            }
+        );
+
+        socket.on(
+            'sendEditPlace', data => {
+                socket.broadcast.emit(
+                    'receiveEditPlace', data
+                )
+            }
+        );
+
+
+    }
+)
+
 const start = async () => {
     try {
         await sequelize.authenticate();
         await sequelize.sync();
-        app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+        server.listen(PORT, () => console.log(`Server started on port ${PORT}`))
     } catch (err) {
         console.error(err)
     }
