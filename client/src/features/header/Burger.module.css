@@ -176,7 +176,7 @@ ul li a {
         border: 2px solid white;
         padding: 2vw;
         margin: 2vw;
-        font-size: 4vw;
+        font-size: 3.5vw;
         transition: all 0.1s;
         display: flex;
         align-items: center;
@@ -205,7 +205,7 @@ ul li a {
         width: 30vw;
         padding: 2vw;
         margin: 2vw;
-        font-size: 4vw;
+        font-size: 3.5vw;
         transition: all 0.1s;
     }
 
