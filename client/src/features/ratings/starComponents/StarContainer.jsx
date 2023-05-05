@@ -74,9 +74,9 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
             <div className={styles.starParams}>
                 <div className={styles.starName}>{starName}</div>
                 <div className={styles.value_container} >
-                    <Arrow action={decrement} className={styles.dec_arrow} onClick={true} />
+                    <Arrow action={decrement} className={styles.dec_arrow} onClick={false} />
                     <input className={styles.value_input} disabled type="number" value={starValue}/>
-                    <Arrow action={increment} className={styles.inc_arrow} onClick={true} />
+                    <Arrow action={increment} className={styles.inc_arrow} onClick={false} />
                 </div>
             </div>
         </div>
