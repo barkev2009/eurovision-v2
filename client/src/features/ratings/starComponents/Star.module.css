@@ -101,13 +101,13 @@ input:focus {
 
 @media screen and (min-width: 600px) {
     .starFront, .starBack {
-        width: 8vw;
-        height: 8vw;
+        width: 5vw;
+        height: 5vw;
     }
 
     .clickBox {
-        width: 7vw;
-        height: 7vw;
+        width: 4vw;
+        height: 4vw;
         left: -0.5vw;
         top: 0.5vw;
     }
@@ -118,5 +118,13 @@ input:focus {
 
     .clickBox {
         cursor: pointer;
+    }
+
+    .value_container {
+        display: none;
+    }
+
+    .starBlock {
+        width: 10%;
     }
 }
