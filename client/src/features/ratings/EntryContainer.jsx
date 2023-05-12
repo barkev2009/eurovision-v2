@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Rating.module.css';
 import Qualifier from './Qualifier';
 import PlaceInFinal from './PlaceInFinal';
 import RatingContainer from './starComponents/RatingContainer';
 import { GRAND_FINAL } from '../../enum';
 
-const EntryContainer = ({ entryData }) => {
-
-    const [showOrder, setShowOrder] = useState(true);
+const EntryContainer = ({ entryData, showOrder, setShowOrder }) => {
 
     const orderHandler = () => {
         setShowOrder(!showOrder);
