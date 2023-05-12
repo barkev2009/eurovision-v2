@@ -58,6 +58,30 @@ header {
     margin: 0px 3vw;
 }
 
+.search {
+    float: left;
+    padding-top: 0vw;
+    position: relative;
+}
+
+.search::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+}
+
+.search input {
+    background-color: rgb(23, 23, 50);
+    color: white;
+    width: 30vw;
+    padding-left: 1vw;
+    font-size: 2vw;
+}
+
 @media screen and (max-width: 600px) {
     header {
         height: 15vw;
@@ -115,5 +139,6 @@ header {
         color: white;
         width: 35vw;
         padding-left: 1vw;
+        font-size: 5vw;
     }
 }

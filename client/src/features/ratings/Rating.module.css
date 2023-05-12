@@ -6,7 +6,7 @@
 }
 
 img {
-    width: 5vw;
+    width: 3vw;
     float: left;
 }
 
@@ -21,6 +21,16 @@ p {
 }
 
 .entryOrder {
+    float: left;
+    color: white;
+    font-size: 2vw;
+    display: inline;
+    width: 5vw;
+    height: 4vw;
+    border: 1px solid white;
+    padding-top: 0vw;
+    margin-right: 0vw;
+    margin-top: 0vw;
     cursor: pointer;
 }
 

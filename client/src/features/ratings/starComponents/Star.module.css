@@ -6,11 +6,11 @@
 }
 
 .clickBox {
-    width: 18vw;
-    height: 18vw;
+    width: 16vw;
+    height: 16vw;
     position: absolute;
     top: 0;
-    left: -1vw;
+    left: 0vw;
     /* pointer-events: all; */
     /* z-index: 1; */
     /* display: none; */
@@ -75,12 +75,14 @@ input:focus {
     width: 10vw;
     position: relative;
     margin-top: 1vw;
+    cursor: pointer;
 }
 
 .inc_arrow {
     width: 10vw;  
     position: relative;
     margin-top: 1vw;
+    cursor: pointer;
 }
 
 .dec_arrow svg {
@@ -98,9 +100,16 @@ input:focus {
 }
 
 @media screen and (min-width: 600px) {
-    .starFront, .starBack, .clickBox {
+    .starFront, .starBack {
         width: 8vw;
         height: 8vw;
+    }
+
+    .clickBox {
+        width: 7vw;
+        height: 7vw;
+        left: -0.5vw;
+        top: 0.5vw;
     }
 
     .starName {

@@ -43,7 +43,8 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
 
     const starHandler = (e) => {
         if (document.querySelector('[class*=active]') === null) {
-            const curValue = Math.round((e.clientX - e.target.offsetWidth / 2) / e.target.offsetWidth * 100) / 100;
+            const rect = e.target.getBoundingClientRect();
+            const curValue = Math.round((e.clientX - rect.left) / e.target.offsetWidth * 100) / 100;
             checkValue(curValue);
         }
     }
