@@ -4,6 +4,7 @@ import { $host } from '../http';
 import { FIRST_SEMIFINAL, GRAND_FINAL } from '../../enum';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRatingsByContest, sortRatings } from '../ratings/ratingsSlice';
+import { getCookie, setCookie } from '../../utils/cookies';
 
 const ORDER = 'Entry order';
 const SCORE = 'Overall score';
@@ -26,9 +27,9 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
     const [steps, setSteps] = useState([]);
     const [sortMethods, setSortMethods] = useState(initialSortMethods);
 
-    const [curYear, setCurYear] = useState(Number(localStorage.getItem('curYear')) || 2023);
-    const [curStep, setCurStep] = useState(localStorage.getItem('curStep') || FIRST_SEMIFINAL);
-    const [curSort, setCurSort] = useState(localStorage.getItem('curSort') || ORDER);
+    const [curYear, setCurYear] = useState(Number(getCookie('curYear')) || 2023);
+    const [curStep, setCurStep] = useState(getCookie('curStep') || FIRST_SEMIFINAL);
+    const [curSort, setCurSort] = useState(getCookie('curSort') || ORDER);
 
 
     const dispatch = useDispatch();
@@ -71,14 +72,14 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
         return () => {
             setTrigger(true);
             setCurYear(year);
-            localStorage.setItem('curYear', year);
+            setCookie('curYear', year);
         }
     }
     const curStepHandler = (step) => {
         return () => {
             setCurStep(step);
             setTrigger(true);
-            localStorage.setItem('curStep', step)
+            setCookie('curStep', step);
         }
     }
     const curSortHandler = (sort) => {
@@ -90,7 +91,7 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
             )
             setCurSort(sort);
             setTrigger(true);
-            localStorage.setItem('curSort', sort);
+            setCookie('curSort', sort);
         }
     }
 
@@ -142,10 +143,10 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
 
             if (curStep === GRAND_FINAL && curSort === QUALIFIED) {
                     setCurSort(PLACE);
-                    localStorage.setItem('curSort', PLACE);
+                    setCookie('curSort', PLACE);
             } else if (curStep !== GRAND_FINAL && curSort === PLACE) {
                     setCurSort(QUALIFIED);
-                    localStorage.setItem('curSort', QUALIFIED);
+                    setCookie('curSort', QUALIFIED);
             }
         }, [curStep]
     );

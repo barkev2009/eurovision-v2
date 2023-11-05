@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "../../utils/cookies";
 
 const $host = axios.create(
     {
@@ -13,7 +14,7 @@ const $authHost = axios.create(
 )
 
 const authInterceptor = config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem(process.env.REACT_APP_LOCAL_STORAGE_KEY)}`
+    config.headers.authorization = `Bearer ${getCookie(process.env.REACT_APP_LOCAL_STORAGE_KEY)}`
     return config
 }
 

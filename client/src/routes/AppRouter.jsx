@@ -8,8 +8,6 @@ const AppRouter = () => {
 
     const isAuth = useSelector(state => state.user.isAuth);
 
-    // console.log(authRoutes, publicRoutes);
-
     return (
         <Routes>
             {
