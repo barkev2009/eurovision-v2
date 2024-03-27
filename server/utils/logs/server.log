@@ -1,0 +1,540 @@
+[2024-03-27T19:07:08.206] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:15:02.036] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:16:28.922] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:18:06.997] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:18:26.604] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:18:44.501] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:19:02.555] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:19:26.167] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:19:57.592] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:23:56.561] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:24:56.870] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "connect ECONNREFUSED 127.0.0.1:80"
+}
+[2024-03-27T20:26:44.005] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:27:17.158] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:29:55.770] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:31:09.374] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:32:28.254] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:32:28.452] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Serbia exists in DB, id=bbf37a3e-0258-55f3-a520-ca428d072d97"
+}
+[2024-03-27T20:32:28.488] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Lithuania exists in DB, id=55047b14-38a6-a958-a764-f0b56491aa02"
+}
+[2024-03-27T20:32:28.517] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ireland exists in DB, id=ad1ea965-4235-df87-d12a-5df193c65fd3"
+}
+[2024-03-27T20:32:28.545] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ukraine exists in DB, id=34b08748-aa25-9a11-4db2-7f25e515a8eb"
+}
+[2024-03-27T20:32:28.574] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Poland exists in DB, id=638afc69-84e7-2337-3978-845719e913ff"
+}
+[2024-03-27T20:32:28.603] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Croatia exists in DB, id=fe73ae3e-134a-598c-bc8c-c4bdf8639d2e"
+}
+[2024-03-27T20:32:28.628] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Iceland exists in DB, id=60484507-40c7-82c5-2f4e-debcbdabdf86"
+}
+[2024-03-27T20:32:28.656] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Slovenia exists in DB, id=dcf09f43-aff7-0e61-668a-efb9ebb70be6"
+}
+[2024-03-27T20:32:28.683] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Finland exists in DB, id=00c57a23-a03c-60a7-3f7f-6d92b65e497a"
+}
+[2024-03-27T20:32:28.711] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Moldova exists in DB, id=b79ed46f-8566-c7b2-541a-05f01e2d7a67"
+}
+[2024-03-27T20:32:28.741] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Azerbaijan exists in DB, id=98d42e3c-23fc-98e2-01b9-2977cc93167a"
+}
+[2024-03-27T20:32:28.767] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Australia exists in DB, id=e1022f90-ba09-3f67-95ac-d0a9ac2d9fde"
+}
+[2024-03-27T20:32:28.792] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Portugal exists in DB, id=a5d53b82-a231-a0f4-f456-759586504fb0"
+}
+[2024-03-27T20:32:29.441] [INFO] server - {
+  "function": "utils/createCountry",
+  "status": "success",
+  "message": "Country Luxembourg successfully created"
+}
+[2024-03-27T20:32:29.474] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Malta exists in DB, id=7840ae02-74ae-2f2f-2838-5f1c72b21524"
+}
+[2024-03-27T20:32:29.503] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Albania exists in DB, id=589c0456-c894-6cf1-d4a3-2dc810d5952f"
+}
+[2024-03-27T20:32:29.531] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Greece exists in DB, id=f6200953-7205-7956-5b13-b4ce06d577e1"
+}
+[2024-03-27T20:32:29.553] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Switzerland exists in DB, id=e57786bd-e0e0-8e59-6a97-6d24be49e7e6"
+}
+[2024-03-27T20:32:29.575] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Code for country Czechia does not exist in mapper"
+}
+[2024-03-27T20:32:29.605] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Austria exists in DB, id=fcc1f36c-bc68-c706-aa5e-241a1c7be6be"
+}
+[2024-03-27T20:32:29.629] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Denmark exists in DB, id=82bf88ae-5a0d-6e1e-cf1c-4ac1336ff812"
+}
+[2024-03-27T20:32:29.654] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Armenia exists in DB, id=2a2b058f-1570-d6a2-7d1a-541bf0be989a"
+}
+[2024-03-27T20:32:29.688] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Latvia exists in DB, id=5a98ba28-6159-1ef3-dfca-0c7081deee31"
+}
+[2024-03-27T20:32:29.710] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country San Marino exists in DB, id=5890df60-e556-0d42-a728-6dc4ebb569a5"
+}
+[2024-03-27T20:32:29.742] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Georgia exists in DB, id=9e49960c-4aca-3fce-dd33-dfbe46a6a300"
+}
+[2024-03-27T20:32:29.772] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Belgium exists in DB, id=4f5bcfe1-3cbc-7df9-478c-402cf585489a"
+}
+[2024-03-27T20:32:29.792] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Estonia exists in DB, id=78ed3e32-ff39-f971-c0ae-a1d3d521ef4d"
+}
+[2024-03-27T20:32:29.836] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Israel exists in DB, id=9ce89ad8-0757-9332-9a60-ddbf0eb65163"
+}
+[2024-03-27T20:32:29.871] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Norway exists in DB, id=211f0df0-e5cf-7bc9-1052-02652559d69d"
+}
+[2024-03-27T20:32:29.902] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Netherlands exists in DB, id=37ff6f86-90e8-1bd0-37ca-ba6520f04a9e"
+}
+[2024-03-27T20:38:32.414] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:38:32.564] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Serbia exists in DB, id=bbf37a3e-0258-55f3-a520-ca428d072d97"
+}
+[2024-03-27T20:38:32.591] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Lithuania exists in DB, id=55047b14-38a6-a958-a764-f0b56491aa02"
+}
+[2024-03-27T20:38:32.617] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ireland exists in DB, id=ad1ea965-4235-df87-d12a-5df193c65fd3"
+}
+[2024-03-27T20:38:32.643] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ukraine exists in DB, id=34b08748-aa25-9a11-4db2-7f25e515a8eb"
+}
+[2024-03-27T20:38:32.669] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Poland exists in DB, id=638afc69-84e7-2337-3978-845719e913ff"
+}
+[2024-03-27T20:38:32.696] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Croatia exists in DB, id=fe73ae3e-134a-598c-bc8c-c4bdf8639d2e"
+}
+[2024-03-27T20:38:32.724] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Iceland exists in DB, id=60484507-40c7-82c5-2f4e-debcbdabdf86"
+}
+[2024-03-27T20:38:32.748] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Slovenia exists in DB, id=dcf09f43-aff7-0e61-668a-efb9ebb70be6"
+}
+[2024-03-27T20:38:32.773] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Finland exists in DB, id=00c57a23-a03c-60a7-3f7f-6d92b65e497a"
+}
+[2024-03-27T20:38:32.797] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Moldova exists in DB, id=b79ed46f-8566-c7b2-541a-05f01e2d7a67"
+}
+[2024-03-27T20:38:32.821] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Azerbaijan exists in DB, id=98d42e3c-23fc-98e2-01b9-2977cc93167a"
+}
+[2024-03-27T20:38:32.846] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Australia exists in DB, id=e1022f90-ba09-3f67-95ac-d0a9ac2d9fde"
+}
+[2024-03-27T20:38:32.872] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Portugal exists in DB, id=a5d53b82-a231-a0f4-f456-759586504fb0"
+}
+[2024-03-27T20:38:32.897] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Luxembourg exists in DB, id=fdb989a4-754b-7960-0110-af8aa8264bc8"
+}
+[2024-03-27T20:38:32.925] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Malta exists in DB, id=7840ae02-74ae-2f2f-2838-5f1c72b21524"
+}
+[2024-03-27T20:38:32.965] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Albania exists in DB, id=589c0456-c894-6cf1-d4a3-2dc810d5952f"
+}
+[2024-03-27T20:38:32.994] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Greece exists in DB, id=f6200953-7205-7956-5b13-b4ce06d577e1"
+}
+[2024-03-27T20:38:33.017] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Switzerland exists in DB, id=e57786bd-e0e0-8e59-6a97-6d24be49e7e6"
+}
+[2024-03-27T20:38:33.535] [INFO] server - {
+  "function": "utils/createCountry",
+  "status": "success",
+  "message": "Country Czechia successfully created"
+}
+[2024-03-27T20:38:33.566] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Austria exists in DB, id=fcc1f36c-bc68-c706-aa5e-241a1c7be6be"
+}
+[2024-03-27T20:38:33.592] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Denmark exists in DB, id=82bf88ae-5a0d-6e1e-cf1c-4ac1336ff812"
+}
+[2024-03-27T20:38:33.615] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Armenia exists in DB, id=2a2b058f-1570-d6a2-7d1a-541bf0be989a"
+}
+[2024-03-27T20:38:33.666] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Latvia exists in DB, id=5a98ba28-6159-1ef3-dfca-0c7081deee31"
+}
+[2024-03-27T20:38:33.699] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country San Marino exists in DB, id=5890df60-e556-0d42-a728-6dc4ebb569a5"
+}
+[2024-03-27T20:38:33.721] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Georgia exists in DB, id=9e49960c-4aca-3fce-dd33-dfbe46a6a300"
+}
+[2024-03-27T20:38:33.743] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Belgium exists in DB, id=4f5bcfe1-3cbc-7df9-478c-402cf585489a"
+}
+[2024-03-27T20:38:33.773] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Estonia exists in DB, id=78ed3e32-ff39-f971-c0ae-a1d3d521ef4d"
+}
+[2024-03-27T20:38:33.796] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Israel exists in DB, id=9ce89ad8-0757-9332-9a60-ddbf0eb65163"
+}
+[2024-03-27T20:38:33.819] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Norway exists in DB, id=211f0df0-e5cf-7bc9-1052-02652559d69d"
+}
+[2024-03-27T20:38:33.843] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Netherlands exists in DB, id=37ff6f86-90e8-1bd0-37ca-ba6520f04a9e"
+}
+[2024-03-27T20:47:05.360] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Cyprus exists in DB, id=4d5b8271-ebe5-55a9-b58f-fc129ce9bfe6"
+}
+[2024-03-27T20:47:05.512] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Serbia exists in DB, id=bbf37a3e-0258-55f3-a520-ca428d072d97"
+}
+[2024-03-27T20:47:05.543] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Lithuania exists in DB, id=55047b14-38a6-a958-a764-f0b56491aa02"
+}
+[2024-03-27T20:47:05.570] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ireland exists in DB, id=ad1ea965-4235-df87-d12a-5df193c65fd3"
+}
+[2024-03-27T20:47:05.598] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Ukraine exists in DB, id=34b08748-aa25-9a11-4db2-7f25e515a8eb"
+}
+[2024-03-27T20:47:05.625] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Poland exists in DB, id=638afc69-84e7-2337-3978-845719e913ff"
+}
+[2024-03-27T20:47:05.651] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Croatia exists in DB, id=fe73ae3e-134a-598c-bc8c-c4bdf8639d2e"
+}
+[2024-03-27T20:47:05.678] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Iceland exists in DB, id=60484507-40c7-82c5-2f4e-debcbdabdf86"
+}
+[2024-03-27T20:47:05.703] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Slovenia exists in DB, id=dcf09f43-aff7-0e61-668a-efb9ebb70be6"
+}
+[2024-03-27T20:47:05.730] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Finland exists in DB, id=00c57a23-a03c-60a7-3f7f-6d92b65e497a"
+}
+[2024-03-27T20:47:05.755] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Moldova exists in DB, id=b79ed46f-8566-c7b2-541a-05f01e2d7a67"
+}
+[2024-03-27T20:47:05.783] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Azerbaijan exists in DB, id=98d42e3c-23fc-98e2-01b9-2977cc93167a"
+}
+[2024-03-27T20:47:05.812] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Australia exists in DB, id=e1022f90-ba09-3f67-95ac-d0a9ac2d9fde"
+}
+[2024-03-27T20:47:05.836] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Portugal exists in DB, id=a5d53b82-a231-a0f4-f456-759586504fb0"
+}
+[2024-03-27T20:47:05.884] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Luxembourg exists in DB, id=fdb989a4-754b-7960-0110-af8aa8264bc8"
+}
+[2024-03-27T20:47:05.909] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Malta exists in DB, id=7840ae02-74ae-2f2f-2838-5f1c72b21524"
+}
+[2024-03-27T20:47:05.932] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Albania exists in DB, id=589c0456-c894-6cf1-d4a3-2dc810d5952f"
+}
+[2024-03-27T20:47:05.956] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Greece exists in DB, id=f6200953-7205-7956-5b13-b4ce06d577e1"
+}
+[2024-03-27T20:47:05.979] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Switzerland exists in DB, id=e57786bd-e0e0-8e59-6a97-6d24be49e7e6"
+}
+[2024-03-27T20:47:06.000] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Czechia exists in DB, id=498fa7a5-ef75-d67c-73f5-1c646d8709d0"
+}
+[2024-03-27T20:47:06.041] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Austria exists in DB, id=fcc1f36c-bc68-c706-aa5e-241a1c7be6be"
+}
+[2024-03-27T20:47:06.064] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Denmark exists in DB, id=82bf88ae-5a0d-6e1e-cf1c-4ac1336ff812"
+}
+[2024-03-27T20:47:06.088] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Armenia exists in DB, id=2a2b058f-1570-d6a2-7d1a-541bf0be989a"
+}
+[2024-03-27T20:47:06.111] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Latvia exists in DB, id=5a98ba28-6159-1ef3-dfca-0c7081deee31"
+}
+[2024-03-27T20:47:06.133] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country San Marino exists in DB, id=5890df60-e556-0d42-a728-6dc4ebb569a5"
+}
+[2024-03-27T20:47:06.157] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Georgia exists in DB, id=9e49960c-4aca-3fce-dd33-dfbe46a6a300"
+}
+[2024-03-27T20:47:06.180] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Belgium exists in DB, id=4f5bcfe1-3cbc-7df9-478c-402cf585489a"
+}
+[2024-03-27T20:47:06.206] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Estonia exists in DB, id=78ed3e32-ff39-f971-c0ae-a1d3d521ef4d"
+}
+[2024-03-27T20:47:06.235] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Israel exists in DB, id=9ce89ad8-0757-9332-9a60-ddbf0eb65163"
+}
+[2024-03-27T20:47:06.264] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Norway exists in DB, id=211f0df0-e5cf-7bc9-1052-02652559d69d"
+}
+[2024-03-27T20:47:06.288] [ERROR] server - {
+  "function": "utils/createCountry",
+  "status": "fail",
+  "message": "Country Netherlands exists in DB, id=37ff6f86-90e8-1bd0-37ca-ba6520f04a9e"
+}

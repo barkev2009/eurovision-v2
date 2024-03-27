@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({path: '../.env'});
 const path = require('path');
 const { FIRST_SEMIFINAL } = require('../models/enum');
 const { Rating, User } = require('../models/models');
@@ -143,4 +143,4 @@ const test2 = async (fileName) => {
     }
 };
 
-test2('entries_2023');
+test2('entries_2024');

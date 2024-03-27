@@ -3,7 +3,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 const path = require('path');
 const { log } = require("../logs/logger");
-require('dotenv').config();
+require('dotenv').config({path: '../.env'});
 
 const countryCodes = [
   {
@@ -241,6 +241,10 @@ const countryCodes = [
   {
     "value": "CZ",
     "label": "Czech Republic"
+  },
+  {
+    "value": "CZ",
+    "label": "Czechia"
   },
   {
     "value": "CI",
@@ -1227,7 +1231,6 @@ const createCountry = async (countryName) => {
       log('error', { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}` });
       return { function: 'utils/createCountry', status: 'fail', message: `Country ${countryName} exists in DB, id=${dbCheck.data.id}`, countryId: dbCheck.data.id };
     }
-
     const mapValue = countryCodes.filter(item => item.label === countryName);
     if (mapValue.length === 0) {
       log('error', { function: 'utils/createCountry', status: 'fail', message: `Code for country ${countryName} does not exist in mapper` });
@@ -1272,7 +1275,7 @@ const test = async () => {
   await createCountry('Italy');
   console.log('2');
   console.log('3');
-  await createCountry('Albania');
+  await createCountry('Luxembourg');
   console.log('4');
   console.log('5');
 }
