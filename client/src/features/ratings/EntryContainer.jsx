@@ -5,7 +5,7 @@ import PlaceInFinal from './PlaceInFinal';
 import RatingContainer from './starComponents/RatingContainer';
 import { GRAND_FINAL } from '../../enum';
 
-const EntryContainer = ({ entryData, showOrder, setShowOrder }) => {
+const EntryContainer = ({ entryData, showOrder, setShowOrder, flagIconHandler }) => {
 
     const orderHandler = () => {
         setShowOrder(!showOrder);
@@ -13,7 +13,7 @@ const EntryContainer = ({ entryData, showOrder, setShowOrder }) => {
 
     return (
         <div id={entryData.id} className={styles.entryContainer}>
-            <img src={entryData.iconPath} alt={entryData.countryName} />
+            <img src={entryData.iconPath} alt={entryData.countryName} onClick={flagIconHandler(entryData.iconPath)} />
             <div className={styles.countryNameWrapper}>
                 <div className={styles.countryName}>{entryData.countryName}</div>
             </div>

@@ -1,0 +1,55 @@
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.mActive {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modalContent {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #bdbdbd;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    max-width: 1000px;
+    width: 80vw;
+    height: fit-content;
+    max-height: 80vh;
+    border: 1px solid #121212;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mcActive {
+    transform: scale(1);
+}
+
+.mcFlag {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50vw;
+    height: 70vh;
+}
+
+@media (max-width: 600px) {
+    .mcFlag {
+        width: 80vw;
+        height: 30vh;
+    }
+}
