@@ -23,11 +23,14 @@ const Burger = ({ header, items, active, setActive }) => {
                             items && items.map(
                                 (item, idx) => <li key={idx} onClick={() => setActive(!active)}>
                                     <img src={item.icon} alt={item.name} />
-                                    <a onClick={clickHandler(item.id)} href={item.href}>
-                                        {`${item.search ? '' : item.order + '.'} ${item.name} ${item.search ? `(${item.year})` : ''}`}
-                                        
-                                    </a>
-                                    {item.step !== GRAND_FINAL && item.qualifier && <HeartLogo className={styles.heart_burger} fill={'rgb(0, 106, 0)'} />}
+                                    <div className={styles.burger_item_txt}>
+                                        <a onClick={clickHandler(item.id)} href={item.href}>
+                                            {`${item.search ? '' : item.order + '.'} ${item.name} ${item.search ? `(${item.year})` : ''}`}
+
+                                        </a>
+                                        {item.step !== GRAND_FINAL && item.qualifier && <HeartLogo className={styles.heart_burger} fill={'rgb(0, 106, 0)'} />}
+                                        {item.step === GRAND_FINAL && item.place !== 0 && <span>{`(${item.place} place)`}</span>}
+                                    </div>
                                 </li>
                             )
                         }

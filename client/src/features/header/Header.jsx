@@ -31,7 +31,8 @@ const Header = () => {
                     qualifier: rating.qualifier,
                     href: '/',
                     search: rating.search,
-                    year: rating.year
+                    year: rating.year,
+                    place: rating.placeInFinal
                 })
             ));
         }, [ratings]

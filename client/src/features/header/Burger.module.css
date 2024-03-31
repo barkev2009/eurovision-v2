@@ -218,11 +218,26 @@ ul li a {
 
     ul li {
         margin: 1vw;
+        display: flex;
     }
 
     ul li a {
-        margin: 5vw;
+        margin: 1vw;
         padding-right: 2vw;
+        text-wrap: nowrap;
+    }
+
+    ul li span {
+        color: gray;
+        text-wrap: nowrap;
+        margin: 1vw;
+    }
+
+    .burger_item_txt {
+        margin-left: 10px;
+        overflow-x: scroll;
+        width: 60vw;
+        display: flex;
     }
 
     .filter__header {
