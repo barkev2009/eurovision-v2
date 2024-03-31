@@ -13,7 +13,7 @@ const Header = () => {
 
     const isAdmin = useSelector(state => state.user.role === 'ADMIN');
 
-    const [active, setActive] = useState(false);
+    const [burgerActive, setBurgerActive] = useState(false);
     const [filterActive, setFilterActive] = useState(false);
     const [trigger, setTrigger] = useState(true);
     const ratings = useSelector(state => state.ratings.ratings);
@@ -37,6 +37,21 @@ const Header = () => {
             ));
         }, [ratings]
     );
+    useEffect(
+        () => {
+            if (filterActive) {
+                setBurgerActive(false);
+            }
+        }, [filterActive]
+    );
+    useEffect(
+        () => {
+            if (burgerActive) {
+                setFilterActive(false);
+            }
+        }, [burgerActive]
+    );
+
 
     return (
         <header id='header'>
@@ -45,8 +60,8 @@ const Header = () => {
                 <FilterLogo className={styles.filterLogo} active={filterActive} setActive={setFilterActive} />
                 <Search setTrigger={setTrigger} trigger={trigger} />
                 {isAdmin && <AdminLogo className={styles.adminLogo} />}
-                <div onClick={() => setActive(!active)} className={burgerStyles['burger-btn']}><span /></div>
-                <Burger header={'Participants'} items={countryItems} active={active} setActive={setActive} />
+                <div onClick={() => setBurgerActive(!burgerActive)} className={burgerStyles['burger-btn']}><span /></div>
+                <Burger header={'Participants'} items={countryItems} active={burgerActive} setActive={setBurgerActive} />
                 <Filter active={filterActive} setActive={setFilterActive} trigger={trigger} setTrigger={setTrigger} />
             </div>
         </header>
