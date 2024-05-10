@@ -11,3 +11,4 @@ logs
 /server/static/*
 
 *.bkp
+*csv#
