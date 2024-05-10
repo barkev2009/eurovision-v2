@@ -1,5 +1,6 @@
 require('dotenv').config({path: '../.env'});
 const path = require('path');
+const bcrypt = require('bcrypt'); 
 const { FIRST_SEMIFINAL } = require('../models/enum');
 const { Rating, User } = require('../models/models');
 const { Contestant, Entry } = require('../models/models');
@@ -143,4 +144,5 @@ const test2 = async (fileName) => {
     }
 };
 
-test2('entries_2024');
+// test - для преобразования в JSON, test2 - для внесения в БД
+test('entries_2024');
