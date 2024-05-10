@@ -1,7 +1,5 @@
-require('dotenv').config({path: '../.env'});
+require('dotenv').config({ path: '../.env' });
 const path = require('path');
-const bcrypt = require('bcrypt'); 
-const { FIRST_SEMIFINAL } = require('../models/enum');
 const { Rating, User } = require('../models/models');
 const { Contestant, Entry } = require('../models/models');
 const { createCountry } = require("./country");
@@ -25,14 +23,14 @@ const createContestantRating = async (
     let rating;
 
     const contestantCheck = await Contestant.findOne({ where: { artist_name, song_name, year } });
-    console.log(contestantCheck);
+    // console.log(contestantCheck);
     // console.log(contestantCheck.length);
     if (contestantCheck) {
-        console.log('Contestant found');
+        // console.log('Contestant found');
         contestant = contestantCheck;
     } else {
         contestant = await Contestant.create({ artist_name, song_name, year, countryId: country.countryId });
-        console.log('Contestant created');
+        // console.log('Contestant created');
     }
 
     if (Number(place) !== 0) {
@@ -49,14 +47,14 @@ const createContestantRating = async (
     }
 
     const entryCheck = await Entry.findOne({ where: { entry_order, contest_step, contestantId: contestant.id } });
-    console.log(entryCheck);
+    // console.log(entryCheck);
     // console.log(entryCheck.length);
     if (entryCheck) {
-        console.log('Entry found');
+        // console.log('Entry found');
         entry = entryCheck;
     } else {
         entry = await Entry.create({ entry_order, contest_step, contestantId: contestant.id });
-        console.log('Entry created');
+        // console.log('Entry created');
     }
 
     const users = await User.findAll();
@@ -66,10 +64,10 @@ const createContestantRating = async (
     for (let i = 0; i < users.length; i++) {
         user = users[i];
         ratingCheck = await Rating.findOne({ where: { userId: user.id, entryId: entry.id } });
-        console.log(ratingCheck);
+        // console.log(ratingCheck);
         // console.log(ratingCheck.length);
         if (ratingCheck) {
-            console.log('Rating found');
+            // console.log('Rating found');
             rating = ratingCheck;
         } else {
             rating = await Rating.create(
@@ -84,15 +82,15 @@ const createContestantRating = async (
                     score: 0
                 }
             );
-            console.log('Rating created');
+            // console.log('Rating created');
         }
     }
 
 
-    console.log(country.countryId);
-    console.log(contestant.id);
-    console.log(entry.id);
-    console.log(rating.id);
+    // console.log(country.countryId);
+    // console.log(contestant.id);
+    // console.log(entry.id);
+    // console.log(rating.id);
 }
 
 const test = async (fileName) => {
@@ -145,4 +143,7 @@ const test2 = async (fileName) => {
 };
 
 // test - для преобразования в JSON, test2 - для внесения в БД
-test('entries_2024');
+// test('entries_2024');
+module.exports = {
+    createContestantRating
+}

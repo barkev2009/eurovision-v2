@@ -8,10 +8,13 @@ import { useSelector } from 'react-redux';
 import Burger from './Burger';
 import Filter from './Filter';
 import Search from './Search';
+import { useNavigate } from 'react-router-dom';
+import { ADMIN_ROUTE } from '../../consts';
 
 const Header = () => {
 
-    const isAdmin = useSelector(state => state.user.role === 'ADMIN');
+    const isAdmin = useSelector(state => state.user.user.role === 'ADMIN');
+    const navigate = useNavigate();
 
     const [burgerActive, setBurgerActive] = useState(false);
     const [filterActive, setFilterActive] = useState(false);
@@ -57,9 +60,9 @@ const Header = () => {
         <header id='header'>
             <MainLogo className={styles.mainLogo} />
             <div className={styles.headerBtnContainer}>
-                <FilterLogo className={styles.filterLogo} active={filterActive} setActive={setFilterActive} />
                 <Search setTrigger={setTrigger} trigger={trigger} />
-                {isAdmin && <AdminLogo className={styles.adminLogo} />}
+                <FilterLogo className={styles.filterLogo} active={filterActive} setActive={setFilterActive} />
+                {isAdmin && <AdminLogo className={styles.adminLogo} onClick={() => navigate(ADMIN_ROUTE)} />}
                 <div onClick={() => setBurgerActive(!burgerActive)} className={burgerStyles['burger-btn']}><span /></div>
                 <Burger header={'Participants'} items={countryItems} active={burgerActive} setActive={setBurgerActive} />
                 <Filter active={filterActive} setActive={setFilterActive} trigger={trigger} setTrigger={setTrigger} />
