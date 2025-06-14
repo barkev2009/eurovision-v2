@@ -1,6 +1,11 @@
 const axios = require("axios");
 const fs = require("fs");
-require('dotenv').config();
+const path = require("path");
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config({ path: path.resolve(__dirname, '.env.development') });
+} else {
+    require('dotenv').config({ path: path.resolve(__dirname, '.env.production') });
+}
 
 const restoreStatic = async () => {
     console.log('RESTORING STATIC');

@@ -3,7 +3,11 @@ const fs = require('fs');
 const FormData = require('form-data');
 const path = require('path');
 const { log } = require("../logs/logger");
-require('dotenv').config({path: '../.env'});
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({ path: '../.env.development' });
+} else {
+  require('dotenv').config({ path: '../.env.production' });
+}
 
 const countryCodes = [
   {

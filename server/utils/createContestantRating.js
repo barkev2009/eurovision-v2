@@ -1,5 +1,9 @@
-require('dotenv').config({ path: '../.env' });
 const path = require('path');
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config({ path: '../.env.development' });
+} else {
+    require('dotenv').config({ path: '../.env.production' });
+}
 const { Rating, User } = require('../models/models');
 const { Contestant, Entry } = require('../models/models');
 const { createCountry } = require("./country");
