@@ -143,7 +143,7 @@ const test2 = async (fileName) => {
 };
 
 // test - для преобразования в JSON, test2 - для внесения в БД
-test('entries_2025');
+// test('entries_2025');
 module.exports = {
     createContestantRating
 }
