@@ -3,6 +3,8 @@ node_modules*
 */package-lock.json
 
 */.env
+*/.env.production
+*/.env.development
 */logs/*.log*
 logs
 

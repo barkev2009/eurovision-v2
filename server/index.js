@@ -1,14 +1,20 @@
-require('dotenv').config();
+const path = require('path');
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config({ path: path.resolve(__dirname, '.env.development') });
+} else {
+    require('dotenv').config({ path: path.resolve(__dirname, '.env.production') });
+}
+
 const express = require('express');
 const sequelize = require('./db');
 const cors = require('cors');
-const path = require('path');
 const router = require('./routers/index');
 const fileUpload = require('express-fileupload');
 const errorHandler = require('./middleware/ErrorHandlerMiddleware');
 const { Server } = require('socket.io');
 const http = require('http');
 
+console.log(process.env.NODE_ENV);
 const PORT = process.env.PORT || 5002;
 
 const app = express()
@@ -36,11 +42,11 @@ const server = http.createServer(app);
 
 const io = new Server(
     server, {
-        cors: {
-            origin: process.env.CLIENT_URL,
-            methods: ['GET', 'POST', 'PUT', 'DELETE']
-        }
+    cors: {
+        origin: process.env.CLIENT_URL,
+        methods: ['GET', 'POST', 'PUT', 'DELETE']
     }
+}
 )
 
 io.on(
