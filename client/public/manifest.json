@@ -1,6 +1,6 @@
 {
   "short_name": "Eurovision App",
-  "name": "Eurovision App",
+  "name": "Personal app for rating Eurovision entries",
   "icons": [
     {
       "src": "favicon.ico",
