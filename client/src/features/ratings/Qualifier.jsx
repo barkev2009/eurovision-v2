@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editQualifier, editQualifierLocal } from './ratingsSlice';
 import io from 'socket.io-client';
 
-const socket = io.connect(process.env.REACT_APP_API_URL);
+const socket = io.connect(process.env.REACT_APP_API_URL, {
+    secure: true,
+    transports: ['websocket'],
+    rejectUnauthorized: false 
+});
 const Qualifier = ({ qualifier, contestantId }) => {
 
     const [isQualified, setIsQualified] = useState(qualifier);

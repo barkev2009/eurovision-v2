@@ -5,7 +5,11 @@ import { editPlace, editPlaceLocal, transfer } from './ratingsSlice';
 import io from 'socket.io-client';
 import Arrow from '../icons/Arrow';
 
-const socket = io.connect(process.env.REACT_APP_API_URL);
+const socket = io.connect(process.env.REACT_APP_API_URL, {
+    secure: true,
+    transports: ['websocket'],
+    rejectUnauthorized: false 
+});
 const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
     let interval;

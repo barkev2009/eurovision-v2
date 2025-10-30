@@ -3,6 +3,7 @@
         {
             "name": "eurovision-server",
             "script": "index.js",
+            "args": "--https",
             "env": {
                 "PORT": 5002
             }
