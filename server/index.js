@@ -17,13 +17,15 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 
-const options = {
-    // key: fs.readFileSync('/etc/ssl/private/nginx-selfsigned.key'),
-    // cert: fs.readFileSync('/etc/ssl/certs/nginx-selfsigned.crt')
-    key: fs.readFileSync('/etc/letsencrypt/live/barkev2009-portfolio.ru/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/barkev2009-portfolio.ru/cert.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/live/barkev2009-portfolio.ru/chain.pem')
-};
+let options;
+if (process.env.NODE_ENV !== 'development') {
+    options = {
+        key: fs.readFileSync(process.env.CERT_PATH + '/privkey.pem'),
+        cert: fs.readFileSync(process.env.CERT_PATH + '/cert.pem'),
+        ca: fs.readFileSync(process.env.CERT_PATH + '/chain.pem')
+    };
+}
+
 
 console.log(process.env.NODE_ENV);
 const PORT = process.env.PORT || 5002;

@@ -18,3 +18,5 @@ logs
 
 ssdr.sh
 scdr.sh
+archive.sh
+*tar.gz

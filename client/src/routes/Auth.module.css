@@ -1,3 +1,4 @@
+/* Mobile-first стили (базовые) */
 .heart {
     width: 20vw;
     margin: auto;
@@ -34,6 +35,7 @@
     border: 1px solid gray;
     height: 10vw;
     transition: all 0.1s;
+    font-size: 4vw;
 }
 
 .form-group input:-webkit-autofill,
@@ -73,12 +75,11 @@ a {
     color: white;
 }
 
-
+/* Планшеты и небольшие экраны */
 @media screen and (min-width: 600px) {
     .auth_container {
         margin-top: 5vh;
         width: 50vw;
-        /* height: 50vw; */
     }
 
     .heart {
@@ -89,7 +90,6 @@ a {
         width: 30vw;
         font-size: 3vw;
         height: 5vw;
-        /* padding-top: 0vw; */
     }
 
     button {
@@ -97,7 +97,7 @@ a {
         font-size: 3vw;
         height: 5vw;
         margin-top: 5vw;
-    }    
+    }
 
     .form-group span {
         width: 5vw;
@@ -105,5 +105,97 @@ a {
         padding-right: 1vw;
         right: 1.5vw;
         top: 2.5vw;
+    }
+}
+
+/* Десктопная версия */
+@media screen and (min-width: 1024px) {
+    .auth_container {
+        width: 400px;
+        /* Фиксированная ширина для десктопа */
+        max-width: 90%;
+        margin-top: 10vh;
+        padding: 40px 30px;
+    }
+
+    .heart {
+        width: 80px;
+        /* Фиксированный размер вместо vw */
+        margin-top: 5vh;
+    }
+
+    .form-group input {
+        width: 300px;
+        /* Фиксированная ширина */
+        font-size: 16px;
+        /* Читаемый размер шрифта */
+        height: 45px;
+        /* Фиксированная высота */
+        padding: 10px 50px 10px 15px;
+        /* Стандартные отступы */
+        margin: 10px 0;
+        /* Вертикальные отступы */
+    }
+
+    button {
+        width: 300px;
+        /* Фиксированная ширина */
+        font-size: 18px;
+        height: 50px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .form-group span {
+        width: 24px;
+        height: 24px;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Улучшения для десктопа */
+    .form-group input:focus {
+        outline: none;
+        border-color: #fff;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+
+    a {
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #cccccc;
+    }
+}
+
+/* Большие экраны */
+@media screen and (min-width: 1440px) {
+    .auth_container {
+        width: 450px;
+        padding: 50px 40px;
+    }
+
+    .heart {
+        width: 100px;
+    }
+
+    .form-group input {
+        width: 350px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    button {
+        width: 350px;
+        height: 55px;
+        font-size: 20px;
     }
 }

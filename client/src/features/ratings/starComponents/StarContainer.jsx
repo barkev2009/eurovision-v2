@@ -67,7 +67,10 @@ const StarContainer = ({ starName, entryData, ratingName }) => {
 
     return (
         <div className={styles.starBlock}>
-            <div className={styles.starContainer}>
+            <div 
+                className={styles.starContainer}
+                data-title={starName}
+            >
                 <div onClick={starHandler} className={styles.clickBox}></div>
                 <StarIcon className={styles.starBack} starPerc={0} />
                 <StarIcon className={styles.starFront} starPerc={(1 - starValue) * 100} />

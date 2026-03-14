@@ -11,9 +11,6 @@
     position: absolute;
     top: 0;
     left: 0vw;
-    /* pointer-events: all; */
-    /* z-index: 1; */
-    /* display: none; */
 }
 
 .starContainer {
@@ -99,32 +96,165 @@ input:focus {
     text-align: center;
 }
 
-@media screen and (min-width: 600px) {
+/* Мобильная версия (max-width: 768px) - оставляем без изменений */
+@media screen and (max-width: 768px) {
+    /* Все существующие мобильные стили остаются как есть */
+}
+
+/* Планшеты (769px - 1023px) */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+    .starBlock {
+        width: 50%;
+        padding-top: 2vw;
+    }
+
+    .starContainer {
+        position: relative;
+        width: 10vw;
+        height: 10vw;
+    }
+
     .starFront, .starBack {
-        width: 5vw;
-        height: 5vw;
+        width: 10vw;
+        height: 10vw;
+        left: 0;
+        top: 0;
     }
 
     .clickBox {
-        width: 4vw;
-        height: 4vw;
-        left: -0.5vw;
-        top: 0.5vw;
+        width: 10vw;
+        height: 10vw;
+        left: 0;
+        top: 0;
     }
 
     .starName {
-        display: none;
+        font-size: 2.5vw;
+        margin-left: 12vw;
+    }
+
+    .value_container {
+        padding-left: 12vw;
+    }
+
+    input {
+        font-size: 2.5vw;
+        width: 8vw;
+    }
+
+    .dec_arrow, .inc_arrow {
+        width: 5vw;
+    }
+
+    .dec_arrow svg, .inc_arrow svg {
+        height: 3vw;
+    }
+}
+
+/* Десктопная версия (min-width: 1024px) */
+@media screen and (min-width: 1024px) {
+    .starBlock {
+        display: flex;
+        align-items: center;
+        width: 20%;
+        padding: 12px 8px;
+        float: none;
+        position: relative;
+    }
+
+    .starContainer {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin-right: 0;
+    }
+
+    .starFront, .starBack {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
     }
 
     .clickBox {
+        width: 50px;
+        height: 50px;
+        left: 0;
+        top: 0;
         cursor: pointer;
+        z-index: 1;
+    }
+
+    .clickBox:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    /* Показываем название при наведении */
+    .starContainer:hover::after {
+        content: attr(data-title);
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 10;
+        margin-top: 8px;
+    }
+
+    .starParams {
+        display: none;
     }
 
     .value_container {
         display: none;
     }
+}
 
+/* Большие экраны (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
     .starBlock {
-        width: 10%;
+        width: 18%;
+        padding: 15px 10px;
+    }
+
+    .starContainer {
+        width: 60px;
+        height: 60px;
+    }
+
+    .starFront, .starBack {
+        width: 60px;
+        height: 60px;
+    }
+
+    .clickBox {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Очень большие экраны (min-width: 1920px) */
+@media screen and (min-width: 1920px) {
+    .starContainer {
+        width: 40px;
+        height: 40px;
+    }
+
+    .starFront, .starBack {
+        width: 40px;
+        height: 40px;
+    }
+
+    .clickBox {
+        width: 40px;
+        height: 40px;
     }
 }

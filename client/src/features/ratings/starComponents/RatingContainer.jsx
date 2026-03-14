@@ -1,5 +1,6 @@
 import React from 'react'
 import StarContainer from './StarContainer'
+import styles from '../Rating.module.css';
 
 const RatingContainer = ({ entryData }) => {
 
@@ -27,13 +28,13 @@ const RatingContainer = ({ entryData }) => {
     ]
 
     return (
-        <>
+        <div className={styles.ratingsWrapper}>
             {
                 ratingMapper.map(
                     item => <StarContainer key={item.name} entryData={entryData} starName={item.value} ratingName={item.name} />
                 )
             }
-        </>
+        </div>
     )
 }
 

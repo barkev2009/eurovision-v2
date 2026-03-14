@@ -37,22 +37,17 @@ const Qualifier = ({ qualifier, contestantId }) => {
 
     useEffect(
         () => {
-            socket.on(
-                'receiveEditQualifier', ({ id, qualifier }) => {
-                    if (contestantId === id) {
-                        setIsQualified(qualifier);
-                        dispatch(
-                            editQualifierLocal(
-                                {
-                                    id,
-                                    qualifier
-                                }
-                            )
-                        )
-                    }
+            const handler = ({ id, qualifier }) => {
+                if (contestantId === id) {
+                    setIsQualified(qualifier);
+                    dispatch(editQualifierLocal({ id, qualifier }));
                 }
-            )
-        }, [socket]
+            };
+            socket.on('receiveEditQualifier', handler);
+            return () => {
+                socket.off('receiveEditQualifier', handler);
+            };
+        }, [contestantId, dispatch]
     );
 
     return (

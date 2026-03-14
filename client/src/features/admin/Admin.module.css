@@ -1,10 +1,260 @@
 .adminContainer {
+    min-height: 100vh;
+    padding: 2vw;
     display: flex;
     flex-direction: column;
+    gap: 16px;
+    color: white;
 }
 
-textarea {
-    width: 90vw;
-    height: 70vh;
-    margin: 0 auto;
+/* --- Top bar --- */
+.topBar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.backBtn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.backBtn:hover { background: rgba(255,255,255,0.1); }
+
+.title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: normal;
+    flex: 1;
+}
+
+.modeTabs {
+    display: flex;
+    gap: 4px;
+}
+
+.tab {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
+    padding: 7px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.tab:hover { border-color: white; color: white; }
+.tabActive {
+    border-color: yellow;
+    color: yellow;
+}
+
+/* --- CSV pane --- */
+.csvPane {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hint {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.hint code {
+    color: yellow;
+    font-size: 12px;
+}
+
+.csvTextarea {
+    width: 100%;
+    height: 40vh;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: white;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.csvTextarea:focus { border-color: rgba(255,255,255,0.5); }
+
+.parseOk {
+    color: #6fcf6f;
+    font-size: 13px;
+}
+
+/* --- Table pane --- */
+.tablePane {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bulkActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bulkLabel {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+}
+
+.bulkSelect, .bulkInput {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-family: 'Andika', sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+.bulkInput { width: 90px; }
+.bulkSelect option { background: rgb(23, 23, 60); }
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.table th {
+    color: rgba(255,255,255,0.5);
+    font-weight: normal;
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 4px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    vertical-align: middle;
+}
+
+.rowValid td { background: rgba(255,255,255,0.02); }
+.rowInvalid td { background: rgba(255, 80, 80, 0.05); }
+
+.rowNum {
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+    padding-right: 8px;
+    text-align: right;
+    min-width: 24px;
+}
+
+/* Inputs inside table cells */
+.cellInput, .cellInputSm, .cellInputLg, .cellSelect {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid transparent;
+    color: white;
+    font-family: 'Andika', sans-serif;
+    font-size: 13px;
+    padding: 5px 7px;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+}
+.cellInput { min-width: 100px; }
+.cellInputSm { min-width: 55px; max-width: 70px; }
+.cellInputLg { min-width: 140px; }
+
+.cellInput:focus, .cellInputSm:focus, .cellInputLg:focus, .cellSelect:focus {
+    border-color: rgba(255,255,255,0.35);
+}
+.cellSelect { min-width: 150px; }
+.cellSelect option { background: rgb(23, 23, 60); }
+
+/* Row action buttons */
+.rowActions { white-space: nowrap; }
+
+.dupBtn, .delBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.15s;
+    line-height: 1;
+}
+.dupBtn { color: rgba(255,255,255,0.4); }
+.dupBtn:hover { background: rgba(255,255,255,0.1); color: white; }
+.delBtn { color: rgba(255,100,100,0.5); }
+.delBtn:hover { background: rgba(255,80,80,0.15); color: #ff6b6b; }
+
+.addRowBtn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px dashed rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.5);
+    padding: 7px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+.addRowBtn:hover { border-color: white; color: white; }
+
+/* --- Submit bar --- */
+.submitBar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+}
+
+.submitBtn {
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid yellow;
+    color: yellow;
+    padding: 10px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    font-size: 15px;
+    transition: all 0.2s;
+    margin-left: auto;
+}
+.submitBtn:hover:not(:disabled) { background: rgba(255,215,0,0.22); }
+.submitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.statusLoading { color: rgba(255,255,255,0.6); font-size: 14px; }
+.statusOk { color: #6fcf6f; font-size: 14px; }
+.statusError { color: #ff6b6b; font-size: 14px; }
+.errorMsg { color: #ff6b6b; font-size: 13px; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .adminContainer { padding: 4vw; }
+    .title { font-size: 16px; }
+    .cellInput { min-width: 80px; }
+    .cellInputLg { min-width: 110px; }
+    .cellSelect { min-width: 120px; }
 }

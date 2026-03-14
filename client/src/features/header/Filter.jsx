@@ -1,154 +1,143 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Burger.module.css';
 import { $host } from '../http';
 import { FIRST_SEMIFINAL, GRAND_FINAL } from '../../enum';
-import { useDispatch, useSelector } from 'react-redux';
-import { getRatingsByContest, sortRatings } from '../ratings/ratingsSlice';
+import { useDispatch } from 'react-redux';
+import {
+    getRatingsByContest,
+    sortRatings,
+    SORT_BY_ORDER,
+    SORT_BY_SCORE,
+    SORT_BY_PLACE,
+    SORT_BY_QUALIFIED,
+} from '../ratings/ratingsSlice';
 import { getCookie, setCookie } from '../../utils/cookies';
 
-const ORDER = 'Entry order';
-const SCORE = 'Overall score';
-const PLACE = 'Place in final';
-const QUALIFIED = 'Qualified';
-const initialSortMethods = [
-    {
-        name: ORDER,
-        sortMethod: (a, b) => a.entryOrder - b.entryOrder
-    },
-    {
-        name: SCORE,
-        sortMethod: (a, b) => b.score - a.score
-    }
-]
+const SORT_LABELS = {
+    [SORT_BY_ORDER]:     'Entry order',
+    [SORT_BY_SCORE]:     'Overall score',
+    [SORT_BY_PLACE]:     'Place in final',
+    [SORT_BY_QUALIFIED]: 'Qualified',
+};
+
+const baseSortKeys = [SORT_BY_ORDER, SORT_BY_SCORE];
 
 const Filter = ({ active, setActive, trigger, setTrigger }) => {
 
     const [years, setYears] = useState([]);
     const [steps, setSteps] = useState([]);
-    const [sortMethods, setSortMethods] = useState(initialSortMethods);
+    const [sortKeys, setSortKeys] = useState(baseSortKeys);
 
-    const [curYear, setCurYear] = useState(Number(getCookie('curYear')) || 2023);
+    const [curYear, setCurYear] = useState(Number(getCookie('curYear')) || null);
     const [curStep, setCurStep] = useState(getCookie('curStep') || FIRST_SEMIFINAL);
-    const [curSort, setCurSort] = useState(getCookie('curSort') || ORDER);
-
+    const [curSort, setCurSort] = useState(getCookie('curSort') || SORT_BY_ORDER);
 
     const dispatch = useDispatch();
-    const ratings = useSelector(state => state.ratings.ratings);
+
+    // Рефы для актуальных значений без пересоздания колбэков
+    const stateRef = useRef({ trigger, curYear, curStep });
+    const sortRef = useRef(curSort);
+    useEffect(() => {
+        stateRef.current = { trigger, curYear, curStep };
+        sortRef.current = curSort;
+    });
 
     const sendRequest = useCallback(
         () => {
-            if (trigger) {
-                setTimeout(
-                    () => {
-                        document
-                            .querySelector('[class*=Rating_entryContainer]')
-                            ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 500
-                );
-                dispatch(
-                    getRatingsByContest(
-                        {
-                            year: curYear,
-                            contest_step: curStep
-                        }
-                    )
-                );
+            const { trigger, curYear, curStep } = stateRef.current;
+            if (trigger && curYear) {
+                setTimeout(() => {
+                    document
+                        .querySelector('[class*=Rating_entryContainer]')
+                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 500);
+                // Сортировка применяется через .then() после загрузки —
+                // это разрывает цикл useEffect([ratings]) → sort → новый массив → useEffect → ...
+                dispatch(getRatingsByContest({ year: curYear, contest_step: curStep }))
+                    .then(() => dispatch(sortRatings(sortRef.current)));
             }
-        }, [curStep, curYear, dispatch, trigger]
+        },
+        [dispatch]
     );
 
     const clickHandler = () => {
         setActive(!active);
         setTrigger(true);
-        setTimeout(
-            () => {
-                document
-                    .querySelector('[class*=Rating_entryContainer]')
-                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500
-        );
-    }
-    const curYearHandler = (year) => {
-        return () => {
-            setTrigger(true);
-            setCurYear(year);
-            setCookie('curYear', year);
-        }
-    }
-    const curStepHandler = (step) => {
-        return () => {
-            setCurStep(step);
-            setTrigger(true);
-            setCookie('curStep', step);
-        }
-    }
-    const curSortHandler = (sort) => {
-        return () => {
-            dispatch(
-                sortRatings(
-                    sortMethods.filter(item => item.name === sort)[0].sortMethod
-                )
-            )
-            setCurSort(sort);
-            setTrigger(true);
-            setCookie('curSort', sort);
-        }
+        setTimeout(() => {
+            document
+                .querySelector('[class*=Rating_entryContainer]')
+                ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 500);
     }
 
+    const curYearHandler = (year) => () => {
+        setTrigger(true);
+        setCurYear(year);
+        setCookie('curYear', year);
+    }
+
+    const curStepHandler = (step) => () => {
+        setCurStep(step);
+        setTrigger(true);
+        setCookie('curStep', step);
+    }
+
+    const curSortHandler = (sortKey) => () => {
+        dispatch(sortRatings(sortKey));
+        setCurSort(sortKey);
+        setCookie('curSort', sortKey);
+    }
+
+    // Загружаем список лет один раз при маунте
     useEffect(
         () => {
-            $host.get('api/utils/get_years').then(
-                resp => {
-                    setYears(resp.data.map(item => item.year));
+            $host.get('api/utils/get_years').then(resp => {
+                const fetchedYears = resp.data.map(item => item.year);
+                setYears(fetchedYears);
+                if (!getCookie('curYear') && fetchedYears.length > 0) {
+                    const maxYear = Math.max(...fetchedYears.map(Number));
+                    setCurYear(maxYear);
+                    setCookie('curYear', maxYear);
                 }
-            );
+            });
+        },
+        [] // eslint-disable-line react-hooks/exhaustive-deps
+    );
+
+    // Загружаем шаги при смене года
+    useEffect(
+        () => {
+            if (!curYear) return;
             $host.get('api/utils/get_steps', { params: { year: curYear } }).then(
-                resp => {
-                    setSteps(resp.data.map(item => item.contest_step));
-                }
+                resp => setSteps(resp.data.map(item => item.contest_step))
             );
-            sendRequest();
-        }, [sendRequest, curYear]
+        },
+        [curYear]
     );
-    useEffect(
-        () => {
-            sendRequest();
-        }, [sendRequest]
-    );
-    useEffect(
-        () => {
-            if (ratings.length !== 0) {
-                dispatch(
-                    sortRatings(
-                        sortMethods.filter(item => item.name === curSort)[0].sortMethod
-                    )
-                )
-            }
-        }, [ratings]
-    );
-    useEffect(
-        () => {
-            setSortMethods(
-                [
-                    ...initialSortMethods,
-                    curStep === GRAND_FINAL ?
-                    {
-                        name: PLACE, sortMethod: (a, b) => a.placeInFinal - b.placeInFinal
-                    } :
-                    {
-                        name: QUALIFIED, sortMethod: (a, b) => b.qualifier - a.qualifier
-                    }
-                ]
-            );
 
-            if (curStep === GRAND_FINAL && curSort === QUALIFIED) {
-                    setCurSort(PLACE);
-                    setCookie('curSort', PLACE);
-            } else if (curStep !== GRAND_FINAL && curSort === PLACE) {
-                    setCurSort(QUALIFIED);
-                    setCookie('curSort', QUALIFIED);
+    // Делаем запрос при изменении года, шага или trigger
+    useEffect(
+        () => {
+            sendRequest();
+        },
+        [curYear, curStep, trigger, sendRequest]
+    );
+
+    // Переключаем доступные варианты сортировки при смене шага
+    useEffect(
+        () => {
+            const extra = curStep === GRAND_FINAL ? SORT_BY_PLACE : SORT_BY_QUALIFIED;
+            setSortKeys([...baseSortKeys, extra]);
+
+            if (curStep === GRAND_FINAL && curSort === SORT_BY_QUALIFIED) {
+                setCurSort(SORT_BY_PLACE);
+                setCookie('curSort', SORT_BY_PLACE);
+            } else if (curStep !== GRAND_FINAL && curSort === SORT_BY_PLACE) {
+                setCurSort(SORT_BY_QUALIFIED);
+                setCookie('curSort', SORT_BY_QUALIFIED);
             }
-        }, [curStep]
+        },
+        [curStep] // eslint-disable-line react-hooks/exhaustive-deps
     );
 
     return (
@@ -188,13 +177,13 @@ const Filter = ({ active, setActive, trigger, setTrigger }) => {
                 <div className={styles.filter__header}>Sort by</div>
                 <div className={styles.steps_container}>
                     {
-                        sortMethods.map(
-                            (item, idx) => <div
-                                onClick={curSortHandler(item.name)}
+                        sortKeys.map(
+                            (key, idx) => <div
+                                onClick={curSortHandler(key)}
                                 key={idx}
-                                style={{ borderColor: item.name === curSort ? 'yellow' : 'white' }}
+                                style={{ borderColor: key === curSort ? 'yellow' : 'white' }}
                                 className={styles.step_content}>
-                                {item.name}
+                                {SORT_LABELS[key]}
                             </div>
                         )
                     }

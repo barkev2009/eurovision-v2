@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Rating.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPlace, editPlaceLocal, transfer } from './ratingsSlice';
@@ -10,9 +10,9 @@ const socket = io.connect(process.env.REACT_APP_API_URL, {
     transports: ['websocket'],
     rejectUnauthorized: false 
 });
+
 const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
-    let interval;
     const [borderColor, setBorderColor] = useState('gray');
     const userRole = useSelector(state => state.user.user.role);
     const dispatch = useDispatch();
@@ -42,21 +42,16 @@ const PlaceInFinal = ({ placeInFinal, contestantId, ratingId }) => {
 
     useEffect(
         () => {
-            socket.on(
-                'receiveEditPlace', ({ id, place_in_final }) => {
-                    if (contestantId === id) {
-                        dispatch(
-                            editPlaceLocal(
-                                {
-                                    id,
-                                    place_in_final
-                                }
-                            )
-                        )
-                    }
+            const handler = ({ id, place_in_final }) => {
+                if (contestantId === id) {
+                    dispatch(editPlaceLocal({ id, place_in_final }));
                 }
-            );
-        }, [socket]
+            };
+            socket.on('receiveEditPlace', handler);
+            return () => {
+                socket.off('receiveEditPlace', handler);
+            };
+        }, [contestantId, dispatch]
     );
 
     const transferHandler = () => {
