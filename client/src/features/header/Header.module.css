@@ -149,3 +149,62 @@ header {
         font-size: 5vw;
     }
 }
+/* ── Desktop ≥ 1024px ── */
+@media screen and (min-width: 1024px) {
+    header {
+        height: 54px;
+        display: flex;
+        align-items: center;
+        padding: 0 32px;
+        z-index: 10;
+    }
+
+    .mainLogo {
+        position: static;
+        width: 130px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    .headerBtnContainer {
+        position: static;
+        float: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+        top: auto;
+        right: auto;
+    }
+
+    .search {
+        float: none;
+        padding-top: 0;
+    }
+
+    .search input {
+        width: 260px;
+        font-size: 15px;
+        padding-left: 8px;
+        height: 30px;
+        font-family: 'Andika', sans-serif;
+    }
+
+    .filterLogo {
+        width: 22px;
+        height: 22px;
+        margin: 0 10px;
+    }
+
+    .adminLogo {
+        width: 18px;
+        height: 18px;
+        top: 0;
+        margin: 0 10px;
+    }
+
+    /* Скрываем бургер-кнопку на десктопе */
+    .burger-btn {
+        display: none !important;
+    }
+}

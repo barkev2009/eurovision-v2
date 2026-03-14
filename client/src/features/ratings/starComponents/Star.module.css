@@ -101,160 +101,132 @@ input:focus {
     /* Все существующие мобильные стили остаются как есть */
 }
 
-/* Планшеты (769px - 1023px) */
-@media screen and (min-width: 769px) and (max-width: 1023px) {
-    .starBlock {
-        width: 50%;
-        padding-top: 2vw;
-    }
 
-    .starContainer {
-        position: relative;
-        width: 10vw;
-        height: 10vw;
-    }
-
-    .starFront, .starBack {
-        width: 10vw;
-        height: 10vw;
-        left: 0;
-        top: 0;
-    }
-
-    .clickBox {
-        width: 10vw;
-        height: 10vw;
-        left: 0;
-        top: 0;
-    }
-
-    .starName {
-        font-size: 2.5vw;
-        margin-left: 12vw;
-    }
-
-    .value_container {
-        padding-left: 12vw;
-    }
-
-    input {
-        font-size: 2.5vw;
-        width: 8vw;
-    }
-
-    .dec_arrow, .inc_arrow {
-        width: 5vw;
-    }
-
-    .dec_arrow svg, .inc_arrow svg {
-        height: 3vw;
-    }
-}
-
-/* Десктопная версия (min-width: 1024px) */
+/* ── Desktop ≥ 1024px ── */
 @media screen and (min-width: 1024px) {
+    /* Каждая звезда — колонка: [44px иконка] + [строка со стрелками и числом] */
     .starBlock {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        width: 20%;
-        padding: 12px 8px;
+        flex: 1;
+        min-width: 70px;
+        padding: 2px 0;
         float: none;
         position: relative;
     }
 
+    /* starContainer — явные размеры, display:block,
+       SVG абсолютные внутри него */
     .starContainer {
+        display: block;
         position: relative;
-        width: 50px;
-        height: 50px;
-        margin-right: 0;
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
     }
 
     .starFront, .starBack {
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
         position: absolute;
         left: 0;
         top: 0;
-        z-index: -1;
+        z-index: 0;
     }
 
     .clickBox {
-        width: 50px;
-        height: 50px;
+        position: absolute;
         left: 0;
         top: 0;
+        width: 44px;
+        height: 44px;
         cursor: pointer;
-        z-index: 1;
-    }
-
-    .clickBox:hover {
-        background: rgba(255, 255, 255, 0.1);
+        z-index: 2;
         border-radius: 4px;
     }
 
-    /* Показываем название при наведении */
+    .clickBox:hover {
+        background: rgba(255,255,255,0.08);
+    }
+
+    /* Тултип */
     .starContainer:hover::after {
         content: attr(data-title);
         position: absolute;
-        top: 100%;
+        bottom: calc(100% + 6px);
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(10,10,30,0.92);
         color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 5px;
+        font-size: 11px;
         white-space: nowrap;
-        z-index: 10;
-        margin-top: 8px;
+        z-index: 20;
+        border: 1px solid rgba(255,255,255,0.15);
+        pointer-events: none;
     }
 
+    /* starParams — строка: [стрелка-влево] [число] [стрелка-вправо]
+       всё на одной горизонтальной линии */
     .starParams {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-top: 4px;
+        gap: 2px;
+        width: 100%;
+    }
+
+    .starName {
         display: none;
     }
 
+    /* value_container = обёртка [< число >], встраивается в starParams */
     .value_container {
-        display: none;
-    }
-}
-
-/* Большие экраны (min-width: 1440px) */
-@media screen and (min-width: 1440px) {
-    .starBlock {
-        width: 18%;
-        padding: 15px 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0;
+        gap: 0;
     }
 
-    .starContainer {
-        width: 60px;
-        height: 60px;
+    input {
+        font-size: 12px;
+        width: 44px;
+        padding: 0;
+        text-align: center;
+        color: rgba(255,255,255,0.85);
+        display: block;
     }
 
-    .starFront, .starBack {
-        width: 60px;
-        height: 60px;
+    .dec_arrow {
+        width: 16px;
+        height: 16px;
+        margin-top: 0;
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .clickBox {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-/* Очень большие экраны (min-width: 1920px) */
-@media screen and (min-width: 1920px) {
-    .starContainer {
-        width: 40px;
-        height: 40px;
+    .inc_arrow {
+        width: 16px;
+        height: 16px;
+        margin-top: 0;
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .starFront, .starBack {
-        width: 40px;
-        height: 40px;
-    }
-
-    .clickBox {
-        width: 40px;
-        height: 40px;
+    .dec_arrow svg, .inc_arrow svg {
+        position: static;
+        height: 10px;
+        width: 10px;
+        display: block;
     }
 }

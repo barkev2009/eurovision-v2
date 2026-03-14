@@ -5,14 +5,15 @@
     flex-direction: column;
     gap: 16px;
     color: white;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 /* --- Top bar --- */
 .topBar {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .backBtn {
@@ -25,6 +26,9 @@
     font-family: 'Andika', sans-serif;
     font-size: 14px;
     transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: fit-content;
 }
 .backBtn:hover { background: rgba(255,255,255,0.1); }
 
@@ -33,6 +37,7 @@
     font-size: 20px;
     font-weight: normal;
     flex: 1;
+    white-space: nowrap;
 }
 
 .modeTabs {
@@ -50,6 +55,10 @@
     font-family: 'Andika', sans-serif;
     font-size: 14px;
     transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: fit-content;
+    margin-left: auto;
 }
 .tab:hover { border-color: white; color: white; }
 .tabActive {
@@ -126,17 +135,19 @@
     font-size: 13px;
     outline: none;
 }
-.bulkInput { width: 90px; }
+.bulkInput { width: 72px; }
 .bulkSelect option { background: rgb(23, 23, 60); }
 
 .tableWrapper {
-    overflow-x: auto;
+    width: 100%;
 }
 
 .table {
     border-collapse: collapse;
     width: 100%;
     font-size: 13px;
+    table-layout: fixed;
+    box-sizing: border-box;
 }
 
 .table th {
@@ -176,35 +187,43 @@
     border-radius: 5px;
     outline: none;
     width: 100%;
+    box-sizing: border-box;
     transition: border-color 0.15s;
 }
-.cellInput { min-width: 100px; }
-.cellInputSm { min-width: 55px; max-width: 70px; }
-.cellInputLg { min-width: 140px; }
+
+
+
 
 .cellInput:focus, .cellInputSm:focus, .cellInputLg:focus, .cellSelect:focus {
     border-color: rgba(255,255,255,0.35);
 }
-.cellSelect { min-width: 150px; }
+
 .cellSelect option { background: rgb(23, 23, 60); }
 
 /* Row action buttons */
-.rowActions { white-space: nowrap; }
+.rowActions {
+    white-space: nowrap;
+    text-align: right;
+    padding: 0 4px !important;
+}
 
 .dupBtn, .delBtn {
     background: transparent;
-    border: none;
+    border: 1px solid transparent;
     cursor: pointer;
-    padding: 4px 6px;
+    padding: 3px 5px;
     border-radius: 4px;
-    font-size: 14px;
-    transition: background 0.15s;
+    font-size: 13px;
+    transition: all 0.15s;
+    width: 40px;
     line-height: 1;
+    flex-shrink: 0;
+    margin: 10px;
 }
-.dupBtn { color: rgba(255,255,255,0.4); }
-.dupBtn:hover { background: rgba(255,255,255,0.1); color: white; }
-.delBtn { color: rgba(255,100,100,0.5); }
-.delBtn:hover { background: rgba(255,80,80,0.15); color: #ff6b6b; }
+.dupBtn { color: rgba(255,255,255,0.35); }
+.dupBtn:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: white; }
+.delBtn { color: rgba(255,80,80,0.6); border-color: rgba(255,80,80,0.2); }
+.delBtn:hover { background: rgba(255,80,80,0.12); border-color: rgba(255,80,80,0.5); color: #ff6b6b; }
 
 .addRowBtn {
     align-self: flex-start;
@@ -254,7 +273,37 @@
 @media (max-width: 768px) {
     .adminContainer { padding: 4vw; }
     .title { font-size: 16px; }
-    .cellInput { min-width: 80px; }
-    .cellInputLg { min-width: 110px; }
-    .cellSelect { min-width: 120px; }
+
+
+
+}
+
+.rowCount {
+    margin-left: auto;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+}
+
+.tableFooter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.clearAllBtn {
+    background: transparent;
+    border: 1px solid rgba(255,80,80,0.3);
+    color: rgba(255,80,80,0.6);
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+.clearAllBtn:hover {
+    background: rgba(255,80,80,0.1);
+    border-color: rgba(255,80,80,0.6);
+    color: #ff6b6b;
 }

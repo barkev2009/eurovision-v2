@@ -275,238 +275,209 @@ p {
     .mainContainer {
         margin-top: 70px;
         padding: 0 40px;
-        max-width: 1200px;
+        max-width: 1000px;
         margin-left: auto;
         margin-right: auto;
     }
 
     .entryContainer {
         width: 100%;
-        max-width: 1000px;
-        margin: 15px 0;
-        padding: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        align-items: center;
-        background: rgba(23, 23, 50, 0.5);
+        margin: 6px 0;
+        padding: 10px 14px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        background: rgba(23,23,50,0.5);
+        transition: background 0.2s, border-color 0.2s;
         display: grid;
-        grid-template-columns: auto 1fr auto auto;
-        grid-template-areas: 
-            "order country params transfer";
-        gap: 20px;
+        grid-template-columns: 56px 1fr auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "flag  country  status"
+            "flag  info     status"
+            ".     ratings  ratings";
+        column-gap: 14px;
+        align-items: start;
+        box-sizing: border-box;
     }
 
     .entryContainer:hover {
-        background: rgba(23, 23, 50, 0.8);
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        background: rgba(23,23,50,0.8);
+        border-color: rgba(255,255,255,0.3);
     }
 
-    img {
-        width: 70px;
-        margin-right: 15px;
-        grid-area: country;
-        align-self: center;
+    /* Флаг — используем класс entryContainer > img чтобы не цеплять
+       другие img (бургер-меню и т.д.) */
+    .entryContainer > img {
+        grid-area: flag;
+        width: 52px;
+        height: 34px;
+        object-fit: contain;
+        float: none;
+        margin: 0;
         cursor: pointer;
+        align-self: center;
+        transition: opacity 0.15s;
+        grid-row: 1 / 3;
     }
-
-    .entryOrder {
-        width: 50px;
-        height: 50px;
-        font-size: 18px;
-        border: 2px solid white;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 0;
-        padding-top: 0;
-        grid-area: order;
-    }
-
-    .entryOrder:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: scale(1.05);
-    }
+    .entryContainer > img:hover { opacity: 0.8; }
 
     .countryNameWrapper {
-        flex: 1;
-        margin-left: 100px;
-        margin-bottom: 0;
-        overflow-x: visible;
         grid-area: country;
-        display: flex;
-        align-items: center;
+        display: block;
+        float: none;
+        overflow-x: visible;
+        width: auto;
+        margin: 0;
+        align-self: end;
+        padding-bottom: 2px;
     }
 
     .countryName {
-        font-size: 20px;
+        font-size: 17px;
         font-weight: 600;
-        width: auto;
         float: none;
-        text-align: left;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    .entryParams {
+        grid-area: info;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        float: none;
+        position: static;
+        width: auto;
+        align-self: start;
+        padding-top: 2px;
+    }
+
+    .entryOrder {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    .entryOrder:hover { background: rgba(255,255,255,0.1); }
+
+    .entryNames {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        float: none;
+        align-items: flex-start;
     }
 
     .tableItemWrapper {
         width: auto;
         overflow-x: visible;
-        margin: 0 20px;
     }
 
     .tableItem {
-        font-size: 16px;
+        font-size: 13px;
         float: none;
         white-space: nowrap;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255,255,255,0.7);
     }
 
-    .entryParams {
+    .ratingsWrapper {
+        grid-area: ratings;
         display: flex;
+        justify-content: space-around;
         align-items: center;
-        gap: 15px;
-        float: none;
-        position: static;
-        grid-area: params;
-        width: 300px;
+        width: 100%;
+        padding-top: 8px;
+        margin-top: 4px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        flex-wrap: nowrap;
     }
 
-    .entryNames {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        float: none;
-        gap: 5px;
-    }
-
+    /* qualifier: фиксированная ширина чтобы смена текста не двигала layout */
     .qualifier {
-        width: 120px;
-        padding: 10px 15px;
-        font-size: 14px;
-        border-radius: 8px;
+        grid-area: status;
+        width: max-content;
+        height: 32px;
+        padding: 0 10px;
+        font-size: 12px;
+        border-radius: 6px;
         margin: 0;
         float: none;
-        grid-area: transfer;
+        align-self: start;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        white-space: nowrap;
     }
-
-    .qualifier:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-1px);
-    }
+    .qualifier:hover { background: rgba(255,255,255,0.08); }
 
     .placeInFinal {
-        padding: 10px 20px;
+        grid-area: status;
+        width: max-content;
+        height: 32px;
+        padding: 0 8px;
         font-size: 14px;
-        border-radius: 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.2);
         margin: 0;
         float: none;
-        position: relative;
-        grid-area: transfer;
+        position: static;
         display: flex;
+        flex-direction: row;
         align-items: center;
-        gap: 8px;
+        gap: 4px;
+        align-self: start;
+        white-space: nowrap;
+        box-sizing: border-box;
     }
 
     .placeValue {
-        width: auto;
-        font-size: 16px;
+        width: 24px;
+        font-size: 14px;
         float: none;
-        margin-right: 0;
+        padding: 0;
+        text-align: center;
     }
 
     .placeValue+div {
         float: none;
         display: inline;
+        font-size: 12px;
+        color: rgba(255,255,255,0.6);
     }
 
-    .transferBtn {
-        padding: 12px 25px;
-        font-size: 14px;
-        border-radius: 8px;
-        margin: 0;
-        float: none;
-        border: 2px solid white;
-        grid-area: transfer;
-    }
-
-    .transferBtn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Скрываем стрелки на десктопе */
-    .incArrow, .decArrow {
-        display: none;
-    }
-}
-
-/* Большие экраны (min-width: 1440px) */
-@media screen and (min-width: 1440px) {
-    .mainContainer {
-        max-width: 1400px;
-        padding: 0 60px;
-    }
-
-    .entryContainer {
-        max-width: 1200px;
-        padding: 25px 30px;
-        margin: 20px 0;
-    }
-
-    .countryName {
-        font-size: 22px;
-    }
-
-    .tableItem {
-        font-size: 17px;
-    }
-
-    .entryOrder {
-        width: 55px;
-        height: 55px;
-        font-size: 20px;
-    }
-
-    .qualifier {
-        width: 140px;
-        padding: 12px 18px;
-        font-size: 15px;
-    }
-
-    .placeInFinal {
-        padding: 12px 25px;
-        font-size: 15px;
-    }
-
-    .transferBtn {
-        padding: 15px 30px;
-        font-size: 16px;
-    }
-}
-
-/* Очень большие экраны (min-width: 1920px) */
-@media screen and (min-width: 1920px) {
-    .mainContainer {
-        max-width: 1600px;
-    }
-
-    .entryContainer {
-        max-width: 1400px;
-    }
-}
-
-/* Добавить в десктопную версию */
-@media screen and (min-width: 1024px) {
-    .ratingsWrapper {
+    /* Стрелки в ряду рядом с числом */
+    .incArrow {
+        position: static;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        grid-column: 1 / -1;
-        margin-top: 15px;
-        padding-top: 15px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 14px;
+        height: 14px;
+        transform: rotate(-90deg);
+        flex-shrink: 0;
     }
+
+    .decArrow {
+        position: static;
+        display: flex;
+        width: 14px;
+        height: 14px;
+        transform: rotate(90deg);
+        flex-shrink: 0;
+    }
+
+    .transferBtn { display: none; }
 }
