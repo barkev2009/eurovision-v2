@@ -7,19 +7,19 @@ const RatingContainer = ({ entryData }) => {
     const ratingMapper = [
         {
             name: 'purity',
-            value: 'Singing purity'
+            value: 'Vocal performance'
         },
         {
             name: 'show',
-            value: 'Show realization'
+            value: 'Stage production'
         },
         {
             name: 'difficulty',
-            value: 'Song difficulty'
+            value: 'Song composition'
         },
         {
             name: 'originality',
-            value: 'Attention capture'
+            value: 'Artistic integrity'
         },
         {
             name: 'sympathy',
